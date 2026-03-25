@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\DESKTOP\\MyWay\\MYWAY\\",
+  "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\MyWay\\MYWAY\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{773A9DB6-84D0-47DB-B1D1-949D3345434D}|MYWAY.csproj|d:\\desktop\\myway\\myway\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773A9DB6-84D0-47DB-B1D1-949D3345434D}|MYWAY.csproj|c:\\users\\dell\\desktop\\myway\\myway\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773A9DB6-84D0-47DB-B1D1-949D3345434D}|MYWAY.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{773A9DB6-84D0-47DB-B1D1-949D3345434D}|MYWAY.csproj|c:\\users\\dell\\desktop\\myway\\myway\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{773A9DB6-84D0-47DB-B1D1-949D3345434D}|MYWAY.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,15 +18,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MYWAY\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MYWAY\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-18T19:21:17.029Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\DESKTOP\\MyWay\\MYWAY\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MYWAY\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "D:\\DESKTOP\\MyWay\\MYWAY\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MYWAY\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
