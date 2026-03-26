@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Window x:Class="MYWAY.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,50 +9,120 @@
         xmlns:views="clr-namespace:MYWAY.Views"
         mc:Ignorable="d"
         Title="MyWay - Produktywność i Nawyki" Height="800" Width="1200"
-        Background="#F1F5F9" FontFamily="Segoe UI" WindowStartupLocation="CenterScreen">
+        Background="#F8FAFC" FontFamily="Segoe UI" WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType">
     
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
 
     <Window.Resources>
+        <SolidColorBrush x:Key="BrandBlue" Color="#1E3A8A"/>
+        <SolidColorBrush x:Key="BrandIndigo" Color="#312E81"/>
+        <SolidColorBrush x:Key="Ink" Color="#0F172A"/>
+        <SolidColorBrush x:Key="Muted" Color="#64748B"/>
+        <SolidColorBrush x:Key="Surface" Color="#FFFFFF"/>
+        <CornerRadius x:Key="CardRadius">18</CornerRadius>
+        <DropShadowEffect x:Key="CardShadow" Color="#1E293B" BlurRadius="22" ShadowDepth="4" Opacity="0.12"/>
+
         <views:TasksView x:Key="TasksView"/>
         <views:HabitsView x:Key="HabitsView"/>
         <views:StatsView x:Key="StatsView"/>
     </Window.Resources>
 
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#F8FAFC" Offset="0"/>
+                <GradientStop Color="#EEF2FF" Offset="0.55"/>
+                <GradientStop Color="#F1F5F9" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Global Header -->
-        <Border Grid.Row="0" Background="White" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1" Padding="15">
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="MyWay" FontSize="32" FontWeight="Bold" Foreground="#1E3A8A" HorizontalAlignment="Center"/>
-            </StackPanel>
+        <!-- Ambient Shapes -->
+        <Canvas IsHitTestVisible="False">
+            <Ellipse Width="420" Height="420" Opacity="0.18">
+                <Ellipse.Fill>
+                    <RadialGradientBrush GradientOrigin="0.35,0.35">
+                        <GradientStop Color="#60A5FA" Offset="0"/>
+                        <GradientStop Color="#C7D2FE" Offset="0.55"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse Width="360" Height="360" Opacity="0.16" Canvas.Right="40" Canvas.Top="120">
+                <Ellipse.Fill>
+                    <RadialGradientBrush GradientOrigin="0.65,0.35">
+                        <GradientStop Color="#A78BFA" Offset="0"/>
+                        <GradientStop Color="#E9D5FF" Offset="0.55"/>
+                        <GradientStop Color="Transparent" Offset="1"/>
+                    </RadialGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Canvas>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Margin="20,20,20,0" Padding="18" Background="{StaticResource Surface}"
+                CornerRadius="{StaticResource CardRadius}" BorderBrush="#E2E8F0" BorderThickness="1"
+                Effect="{StaticResource CardShadow}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Width="46" Height="46" CornerRadius="12" Margin="2,0,14,0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#1D4ED8" Offset="0"/>
+                            <GradientStop Color="#4338CA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock Text="MW" FontWeight="Bold" Foreground="White" FontSize="16"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               FontFamily="Segoe UI Semibold"/>
+                </Border>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="MyWay" FontSize="28" FontWeight="Bold" Foreground="{StaticResource Ink}"
+                               FontFamily="Segoe UI Variable Display"/>
+                    <TextBlock Text="Produktywność i nawyki w jednym miejscu" FontSize="13"
+                               Foreground="{StaticResource Muted}" Margin="1,2,0,0"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
         <!-- Current View Content -->
-        <ContentControl Grid.Row="1" Margin="20">
-            <ContentControl.Style>
-                <Style TargetType="ContentControl">
-                    <Setter Property="Content" Value="{DynamicResource TasksView}"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedViewIndex}" Value="0">
-                            <Setter Property="Content" Value="{DynamicResource TasksView}"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding SelectedViewIndex}" Value="1">
-                            <Setter Property="Content" Value="{DynamicResource HabitsView}"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding SelectedViewIndex}" Value="2">
-                            <Setter Property="Content" Value="{DynamicResource StatsView}"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ContentControl.Style>
-        </ContentControl>
+        <Border Grid.Row="1" Margin="20,16,20,20" Padding="16"
+                Background="{StaticResource Surface}"
+                CornerRadius="{StaticResource CardRadius}"
+                BorderBrush="#E2E8F0" BorderThickness="1"
+                Effect="{StaticResource CardShadow}">
+            <ContentControl>
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Setter Property="Content" Value="{DynamicResource TasksView}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedViewIndex}" Value="0">
+                                <Setter Property="Content" Value="{DynamicResource TasksView}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedViewIndex}" Value="1">
+                                <Setter Property="Content" Value="{DynamicResource HabitsView}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedViewIndex}" Value="2">
+                                <Setter Property="Content" Value="{DynamicResource StatsView}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+            </ContentControl>
+        </Border>
 
     </Grid>
 </Window>
