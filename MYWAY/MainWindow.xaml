@@ -29,6 +29,7 @@
         <views:TasksView x:Key="TasksView"/>
         <views:HabitsView x:Key="HabitsView"/>
         <views:StatsView x:Key="StatsView"/>
+        <views:PeriodSummaryView x:Key="PeriodSummaryView"/>
     </Window.Resources>
 
     <Grid>
@@ -117,6 +118,9 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding SelectedViewIndex}" Value="2">
                                 <Setter Property="Content" Value="{DynamicResource StatsView}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedViewIndex}" Value="3">
+                                <Setter Property="Content" Value="{DynamicResource PeriodSummaryView}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

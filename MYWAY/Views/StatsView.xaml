@@ -4,57 +4,203 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="900">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid>
+        <Grid Background="#F8FAFC" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Big Total Points Widget -->
-        <Border Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource CardStyle}">
-            <StackPanel HorizontalAlignment="Center" Margin="20">
-                <TextBlock Text="Wszystkie Zdobyte Punkty Dziś" FontSize="20" Foreground="#64748B" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding TotalPoints}" FontSize="72" FontWeight="Bold" Foreground="#3B82F6" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-            </StackPanel>
-        </Border>
+            <!-- Title Row -->
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" Text="Statystyki i Postęp" FontSize="28" FontWeight="Bold" 
+                       Foreground="#1E293B" Margin="0,0,0,20" VerticalAlignment="Center"/>
 
-        <!-- Task Stats Widget -->
-        <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource CardStyle}">
-            <StackPanel HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="Ukończone Zadania" FontSize="18" Foreground="#64748B" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding CompletedTasksCount}" FontSize="48" FontWeight="Bold" Foreground="#10B981" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-            </StackPanel>
-        </Border>
-
-        <!-- Extra Tasks Widget -->
-        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardStyle}">
-            <StackPanel HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="Ilość Dodatkowych Aktywności" FontSize="18" Foreground="#64748B" HorizontalAlignment="Center"/>
-                <TextBlock Text="{Binding ExtraActivities.Count}" FontSize="48" FontWeight="Bold" Foreground="#8B5CF6" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-            </StackPanel>
-        </Border>
-
-        <!-- Future Extensibility Widget -->
-        <Border Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource CardStyle}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Świetna robota!" FontSize="24" FontWeight="Bold" Foreground="#1E293B" HorizontalAlignment="Center"/>
-                <TextBlock Text="Utrzymaj swój Streak i wracaj codziennie, by realizować swoje cele." FontSize="16" Foreground="#64748B" HorizontalAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap"/>
-                <!-- You can generate PDF export button here as requested in initial prompt -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Wróć do Zadań" Style="{StaticResource SecondaryButton}" Margin="0,0,10,0" Width="200"
-                            Command="{Binding ChangeViewCommand}" CommandParameter="0"/>
-                    <Button Content="Pobierz Raport PDF (Prototyp)" Style="{StaticResource PrimaryButton}" Background="#475569" Width="250"/>
+            <!-- Today's Points - Large Widget -->
+            <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="today_points"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                    <TextBlock Text="Dzisiaj" FontSize="14" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalPoints}" FontSize="56" FontWeight="Bold" Foreground="#3B82F6" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="pkt" FontSize="12" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="(kliknij aby zobaczyć szczegóły)" FontSize="10" Foreground="#94A3B8" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0" FontStyle="Italic"/>
                 </StackPanel>
-            </StackPanel>
-        </Border>
-    </Grid>
+            </Border>
+
+            <!-- Weekly Points -->
+            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="weekly_points"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                    <TextBlock Text="Ten Tydzień" FontSize="14" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding WeeklyPoints}" FontSize="56" FontWeight="Bold" Foreground="#10B981" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="pkt" FontSize="12" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="(kliknij aby zobaczyć szczegóły)" FontSize="10" Foreground="#94A3B8" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0" FontStyle="Italic"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Monthly Points -->
+            <Border Grid.Row="1" Grid.Column="2" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="monthly_points"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="20" VerticalAlignment="Center">
+                    <TextBlock Text="Ten Miesiąc" FontSize="14" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding MonthlyPoints}" FontSize="56" FontWeight="Bold" Foreground="#8B5CF6" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="pkt" FontSize="12" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="(kliknij aby zobaczyć szczegóły)" FontSize="10" Foreground="#94A3B8" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0" FontStyle="Italic"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Completed Tasks Today -->
+            <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="completed_today"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+                    <TextBlock Text="Zadania Dziś" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding CompletedTasksCount}" FontSize="44" FontWeight="Bold" Foreground="#F59E0B" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="zrobione" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Best Streak -->
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="best_streak"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+                    <TextBlock Text="Najlepszy Streak" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding BestHabitStreak}" FontSize="44" FontWeight="Bold" Foreground="#EF4444" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="dni" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Active Streaks -->
+            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="active_streaks"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+                    <TextBlock Text="Aktualne Streaki" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding ActiveStreaksCount}" FontSize="44" FontWeight="Bold" Foreground="#06B6D4" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="aktywne" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- All Time Stats Row -->
+            <Border Grid.Row="3" Grid.Column="0" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="all_time_points"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+                    <TextBlock Text="Ogółem Punkty" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalPointsAllTime}" FontSize="40" FontWeight="Bold" Foreground="#6366F1" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="wszystkich" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Total Completed Tasks All Time -->
+            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="all_completed_tasks"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+                    <TextBlock Text="Zadania Ogółem" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalCompletedTasksAllTime}" FontSize="40" FontWeight="Bold" Foreground="#14B8A6" 
+                               HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="ukończone" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Average Mood -->
+            <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="mood_stats"/>
+                </Border.InputBindings>
+                <StackPanel HorizontalAlignment="Center" Margin="15" VerticalAlignment="Center">
+                    <TextBlock Text="Średni Nastrój" FontSize="13" Foreground="#64748B" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding AverageMoodThisMonth, StringFormat={}{0:F1}}" FontSize="40" FontWeight="Bold" 
+                               Foreground="#EC4899" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <TextBlock Text="/ 5.0" FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Extra Activities Info -->
+            <Border Grid.Row="4" Grid.ColumnSpan="3" Style="{StaticResource CardStyle}" Margin="5" Cursor="Hand">
+                <Border.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ViewDetailCommand}" CommandParameter="extra_activities"/>
+                </Border.InputBindings>
+                <StackPanel Margin="20">
+                    <TextBlock Text="Dodatkowe Aktywności" FontSize="16" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,10"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Dzisiaj" FontSize="12" Foreground="#64748B"/>
+                            <TextBlock Text="{Binding ExtraActivities.Count}" FontSize="28" FontWeight="Bold" Foreground="#8B5CF6"/>
+                        </StackPanel>
+                        
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Razem" FontSize="12" Foreground="#64748B"/>
+                            <TextBlock Text="{Binding ExtraActivities.Count}" FontSize="28" FontWeight="Bold" Foreground="#8B5CF6"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                            <TextBlock Text="Motywacja" FontSize="12" Foreground="#64748B"/>
+                            <TextBlock Text="Świetnie!" FontSize="20" FontWeight="Bold" Foreground="#10B981"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Quote and Action Buttons -->
+            <Border Grid.Row="5" Grid.ColumnSpan="3" Style="{StaticResource CardStyle}" Margin="5">
+                <StackPanel VerticalAlignment="Top" Margin="20">
+                    <TextBlock Text="Cytat Dnia" FontSize="14" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,10"/>
+                    <TextBlock Text="{Binding TodayRecord.QuoteOfTheDay}" FontSize="13" Foreground="#475569" 
+                               TextWrapping="Wrap" FontStyle="Italic" Margin="0,0,0,20"/>
+                    
+                    <TextBlock Text="Podsumowanie" FontSize="14" FontWeight="Bold" Foreground="#1E293B" Margin="0,0,0,10"/>
+                    <TextBlock FontSize="12" Foreground="#64748B" TextWrapping="Wrap" Margin="0,0,0,20">
+                        <Run Text="Utrzymuj swoje streaki i wracaj codziennie, by osiągać swoje cele. Twoja dedykacja przynosi rezultaty! 💪"/>
+                    </TextBlock>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="↶ Wróć do Zadań" Style="{StaticResource SecondaryButton}" Margin="0,0,10,0" Width="180"
+                                Command="{Binding ChangeViewCommand}" CommandParameter="0"/>
+                        <Button Content="📊 Pobierz Raport PDF" Style="{StaticResource PrimaryButton}" Margin="0,0,10,0" Width="200" Background="#3B82F6"/>
+                        <Button Content="📈 Eksportuj Dane" Style="{StaticResource PrimaryButton}" Width="180" Background="#10B981"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </ScrollViewer>
 </UserControl>
