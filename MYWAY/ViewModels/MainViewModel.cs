@@ -74,15 +74,35 @@ namespace MYWAY.ViewModels
         public string NewTaskTitle
         {
             get => _newTaskTitle;
-            set => SetProperty(ref _newTaskTitle, value);
+            set
+            {
+                if (SetProperty(ref _newTaskTitle, value))
+                {
+                    CommandManager.InvalidateRequerySuggested();
+                }
+            }
         }
 
         private int _newTaskDifficulty = 1;
         public int NewTaskDifficulty
         {
             get => _newTaskDifficulty;
-            set => SetProperty(ref _newTaskDifficulty, value);
+            set
+            {
+                if (SetProperty(ref _newTaskDifficulty, value))
+                {
+                    OnPropertyChanged(nameof(NewTaskDifficultyDescription));
+                }
+            }
         }
+
+        public string NewTaskDifficultyDescription => NewTaskDifficulty switch
+        {
+            1 => "Łatwe zadanie – szybkie i proste do wykonania.",
+            2 => "Średnie zadanie – potrzebuje umiarkowanego zaangażowania.",
+            3 => "Trudne zadanie – wymaga więcej czasu i wysiłku.",
+            _ => "Wybierz poziom trudności zadania.",
+        };
 
         // Add Extra Activity Form
         private string _newExtraTitle = string.Empty;
@@ -113,6 +133,7 @@ namespace MYWAY.ViewModels
         public ICommand CompleteHabitCommand { get; }
         public ICommand AddHabitCommand { get; }
         public ICommand AddExtraActivityCommand { get; }
+        public ICommand DeleteExtraActivityCommand { get; }
         public ICommand StartFocusTimerCommand { get; }
         public ICommand ChangeViewCommand { get; }
         public ICommand ViewDetailCommand { get; }
@@ -127,6 +148,7 @@ namespace MYWAY.ViewModels
             CompleteHabitCommand = new RelayCommand(ExecuteCompleteHabit);
             AddHabitCommand = new RelayCommand(ExecuteAddHabit, CanExecuteAddHabit);
             AddExtraActivityCommand = new RelayCommand(ExecuteAddExtraActivity, CanExecuteAddExtraActivity);
+            DeleteExtraActivityCommand = new RelayCommand(ExecuteDeleteExtraActivity);
             StartFocusTimerCommand = new RelayCommand(ExecuteStartFocusTimer);
             ChangeViewCommand = new RelayCommand(ExecuteChangeView);
             ViewDetailCommand = new RelayCommand(ExecuteViewDetail);
@@ -297,6 +319,15 @@ namespace MYWAY.ViewModels
             UpdatePointsAndState();
         }
 
+        private void ExecuteDeleteExtraActivity(object? obj)
+        {
+            if (obj is ExtraActivity activity)
+            {
+                ExtraActivities.Remove(activity);
+                UpdatePointsAndState();
+            }
+        }
+
         private void ExecuteStartFocusTimer(object? obj)
         {
             if (obj is TaskItem task)
@@ -394,5 +425,6 @@ namespace MYWAY.ViewModels
                     return ExtraActivities;
             }
         }
+
     }
 }

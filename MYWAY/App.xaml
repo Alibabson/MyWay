@@ -29,6 +29,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
             <conv:InvertedBooleanToVisibilityConverter x:Key="InvertedBooleanToVisibilityConverter"/>
             <conv:BooleanToTextDecorationConverter x:Key="BooleanToTextDecorationConverter"/>
+            <conv:IntToBooleanConverter x:Key="IntToBooleanConverter"/>
 
             <!-- Global Styles -->
             <Style TargetType="TextBlock" x:Key="BaseTextBlock">
