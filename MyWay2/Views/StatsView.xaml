@@ -1,0 +1,169 @@
+<UserControl x:Class="MyWay.Views.StatsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Margin="24,20,24,24">
+            <TextBlock Text="📊 Statystyki" Style="{StaticResource SectionHeader}" FontSize="22"/>
+
+            <!-- Period selector -->
+            <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <Button Style="{StaticResource BaseButton}" Content="7 dni"
+                                Command="{Binding ChangePeriodCommand}" CommandParameter="Tydzień"
+                                Margin="0,0,8,0"/>
+                        <Button Style="{StaticResource GhostButton}" Content="30 dni"
+                                Command="{Binding ChangePeriodCommand}" CommandParameter="Miesiąc"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" FontSize="13"
+                                   Foreground="{StaticResource TextSecondaryBrush}">
+                            <Run Text="Okres: "/>
+                            <Run Text="{Binding StatsPeriod, Mode=OneWay}" FontWeight="Bold"
+                                 Foreground="{StaticResource TextPrimaryBrush}"/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <Button Grid.Column="2" Style="{StaticResource OrangeButton}"
+                            Command="{Binding ExportPdfCommand}"
+                            IsEnabled="{Binding IsExporting, Converter={StaticResource BoolToInvVis}}">
+                        <TextBlock>
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="📄 Eksportuj PDF"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsExporting}" Value="True">
+                                            <Setter Property="Text" Value="⏳ Eksportuję..."/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!-- Summary cards -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource Card}" Background="#16162A">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="🏆 Łączne punkty" FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding PeriodTotalPoints}" FontSize="36"
+                                   FontWeight="Black" Foreground="{StaticResource AccentPurpleBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="pkt" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource Card}" Background="#16162A">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="😊 Śr. nastrój" FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding PeriodAvgMoodLabel}" FontSize="36"
+                                   FontWeight="Black" Foreground="{StaticResource AccentGreenBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="/ 5" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="4" Style="{StaticResource Card}" Background="#16162A">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="📅 Dni z danymi" FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding PeriodRecords.Count}" FontSize="36"
+                                   FontWeight="Black" Foreground="{StaticResource AccentOrangeBrush}"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Text="dni" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                                   HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Daily records table -->
+            <Border Style="{StaticResource Card}">
+                <StackPanel>
+                    <TextBlock Text="Dzienne podsumowanie" Style="{StaticResource SectionHeader}" FontSize="16"/>
+
+                    <Border Visibility="{Binding PeriodRecords.Count, Converter={StaticResource NullToVis}}">
+                        <DataGrid ItemsSource="{Binding PeriodRecords}"
+                                  AutoGenerateColumns="False"
+                                  IsReadOnly="True"
+                                  Background="Transparent"
+                                  Foreground="{StaticResource TextPrimaryBrush}"
+                                  BorderThickness="0"
+                                  GridLinesVisibility="Horizontal"
+                                  HorizontalGridLinesBrush="{StaticResource BorderBrush}"
+                                  RowBackground="Transparent"
+                                  AlternatingRowBackground="#0A0A18"
+                                  HeadersVisibility="Column"
+                                  CanUserResizeRows="False"
+                                  SelectionMode="Single">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+                                    <Setter Property="FontSize" Value="11"/>
+                                    <Setter Property="Padding" Value="8,6"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="Padding" Value="8,6"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Data"
+                                                    Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}"
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Nastrój"
+                                                    Binding="{Binding MoodEmoji}"
+                                                    Width="80"/>
+                                <DataGridTextColumn Header="Pkt. zadań"
+                                                    Binding="{Binding TaskPoints}"
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Pkt. ekstra"
+                                                    Binding="{Binding ExtraPoints}"
+                                                    Width="100"/>
+                                <DataGridTextColumn Header="Łącznie"
+                                                    Binding="{Binding TotalPoints}"
+                                                    Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+
+                    <TextBlock Text="Brak danych dla wybranego okresu."
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               FontSize="13" HorizontalAlignment="Center" Margin="0,20"
+                               Visibility="{Binding PeriodRecords.Count,
+                                   Converter={StaticResource BoolToInvVis}}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,130 @@
+<Window x:Class="MyWay.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:MyWay.ViewModels"
+        xmlns:views="clr-namespace:MyWay.Views"
+        Title="MyWay" Height="720" Width="1100"
+        MinHeight="600" MinWidth="900"
+        Background="{StaticResource BgDarkBrush}"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResize">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" 
+                      ResizeBorderThickness="6" 
+                      GlassFrameThickness="0" 
+                      CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Border CornerRadius="12" Background="{StaticResource BgDarkBrush}"
+            BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Background="#0D0D1A"
+                    BorderBrush="{StaticResource BorderBrush}"
+                    BorderThickness="0,0,1,0"
+                    CornerRadius="12,0,0,12">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Margin="20,24,20,20">
+                        <Border Background="Transparent" MouseDown="TitleBar_MouseDown" Cursor="SizeAll">
+                            <StackPanel>
+                                <TextBlock Text="MyWay" FontSize="24" FontWeight="Black"
+                                           Foreground="{StaticResource AccentPurpleBrush}"
+                                           Margin="0,0,0,2"/>
+                                <TextBlock Text="Twoja produktywność" FontSize="11"
+                                           Foreground="{StaticResource TextSecondaryBrush}"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Margin="12,8">
+                        <Button Content="🏠  Dzisiaj" Style="{StaticResource BaseButton}"
+                                Margin="0,2" HorizontalContentAlignment="Left"
+                                Command="{Binding NavigateCommand}"
+                                Tag="0"
+                                Click="NavBtn_Click" x:Name="BtnDashboard"/>
+                        <Button Content="✅  Zadania" Style="{StaticResource BaseButton}"
+                                Margin="0,2" HorizontalContentAlignment="Left"
+                                Tag="1"
+                                Click="NavBtn_Click" x:Name="BtnTasks"/>
+                        <Button Content="📊  Statystyki" Style="{StaticResource BaseButton}"
+                                Margin="0,2" HorizontalContentAlignment="Left"
+                                Tag="3"
+                                Click="NavBtn_Click" x:Name="BtnStats"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="2" Margin="12,0,12,16" Style="{StaticResource Card}"
+                            Padding="12">
+                        <StackPanel>
+                            <TextBlock Text="Dziś" Style="{StaticResource Label}"
+                                       Margin="0,0,0,6"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="✅ " FontSize="12" Foreground="{StaticResource AccentGreenBrush}"/>
+                                <TextBlock FontSize="12" Foreground="{StaticResource TextSecondaryBrush}">
+                                    <Run Text="{Binding Tasks.TodayCompleted, Mode=OneWay}"/>
+                                    <Run Text=" ukończonych"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="⚠ " FontSize="12" Foreground="#FF7043"/>
+                                <TextBlock FontSize="12" Foreground="{StaticResource TextSecondaryBrush}">
+                                    <Run Text="{Binding Tasks.OverdueCount, Mode=OneWay}"/>
+                                    <Run Text=" zaległych"/>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,2">
+                                <TextBlock Text="🔥 " FontSize="12"/>
+                                <TextBlock FontSize="12" Foreground="{StaticResource TextSecondaryBrush}">
+                                    <Run Text="{Binding Habits.CompletedToday, Mode=OneWay}"/>
+                                    <Run Text="/"/>
+                                    <Run Text="{Binding Habits.Habits.Count, Mode=OneWay}"/>
+                                    <Run Text=" nawyków"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                            VerticalAlignment="Top" Margin="0,8,8,0" Panel.ZIndex="10">
+                    <Button Content="—" Width="30" Height="24" FontSize="14"
+                            Style="{StaticResource GhostButton}" Padding="0"
+                            Click="Minimize_Click"/>
+
+                    <Button x:Name="BtnMaximize" Content="☐" Width="30" Height="24" FontSize="14"
+                            Style="{StaticResource GhostButton}" Padding="0"
+                            Click="Maximize_Click" Margin="4,0,0,0"/>
+
+                    <Button Content="✕" Width="30" Height="24" FontSize="12"
+                            Style="{StaticResource DangerButton}" Padding="0"
+                            Click="Close_Click" Margin="4,0,0,0"/>
+                </StackPanel>
+
+                <views:DashboardView x:Name="PageDashboard" DataContext="{Binding Dashboard}"
+                                     Visibility="Visible"/>
+                <views:TasksView x:Name="PageTasks" DataContext="{Binding Tasks}"
+                                 Visibility="Collapsed"/>
+                <views:StatsView x:Name="PageStats" DataContext="{Binding Dashboard}"
+                                 Visibility="Collapsed"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
