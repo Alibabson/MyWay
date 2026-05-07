@@ -30,7 +30,7 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0"
-                    Background="#0D0D1A"
+                    Background="#1F1D49"
                     BorderBrush="{StaticResource BorderBrush}"
                     BorderThickness="0,0,1,0"
                     CornerRadius="12,0,0,12">

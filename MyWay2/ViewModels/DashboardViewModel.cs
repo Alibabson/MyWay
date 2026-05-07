@@ -47,7 +47,7 @@ namespace MyWay.ViewModels
             ? "Tytuł nawyku nie może być pusty" : "";
 
         // Właściwości wyliczane ze statystyk nawyków
-        public int TotalStreakDays => Habits.Sum(h => h.CurrentStreak);
+        public int TotalStreakDays => Habits.Any() ? Habits.Max(h => h.CurrentStreak) : 0;
         public int BestStreak => Habits.Any() ? Habits.Max(h => h.BestStreak) : 0;
         public int CompletedToday => Habits.Count(h => h.IsCompletedToday);
 
@@ -60,6 +60,13 @@ namespace MyWay.ViewModels
         }
 
         public ObservableCollection<DailyRecord> PeriodRecords { get; } = new();
+
+        private bool _hasPeriodRecords;
+        public bool HasPeriodRecords
+        {
+            get => _hasPeriodRecords;
+            set { _hasPeriodRecords = value; OnPropertyChanged(); }
+        }
 
         private int _periodTotalPoints;
         public int PeriodTotalPoints
@@ -167,8 +174,10 @@ namespace MyWay.ViewModels
             PeriodRecords.Clear();
             foreach (var r in records) PeriodRecords.Add(r);
 
+            HasPeriodRecords = PeriodRecords.Any();
             PeriodTotalPoints = records.Sum(r => r.TotalPoints);
-            PeriodAvgMood = records.Any() ? records.Average(r => r.MoodScore) : 0;
+            var recordsWithMood = records.Where(r => r.MoodScore > 0).ToList();
+            PeriodAvgMood = recordsWithMood.Any() ? recordsWithMood.Average(r => r.MoodScore) : 0;
         }
 
         private async Task ExportPdfAsync()

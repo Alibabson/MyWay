@@ -15,11 +15,32 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0" Orientation="Horizontal">
-                        <Button Style="{StaticResource BaseButton}" Content="7 dni"
-                                Command="{Binding ChangePeriodCommand}" CommandParameter="Tydzień"
-                                Margin="0,0,8,0"/>
-                        <Button Style="{StaticResource GhostButton}" Content="30 dni"
-                                Command="{Binding ChangePeriodCommand}" CommandParameter="Miesiąc"/>
+                        <Button Content="7 dni" Command="{Binding ChangePeriodCommand}" CommandParameter="Tydzień" Margin="0,0,8,0">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource GhostButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StatsPeriod}" Value="Tydzień">
+                                            <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Content="30 dni" Command="{Binding ChangePeriodCommand}" CommandParameter="Miesiąc">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource GhostButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StatsPeriod}" Value="Miesiąc">
+                                            <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
@@ -159,9 +180,18 @@
 
                     <TextBlock Text="Brak danych dla wybranego okresu."
                                Foreground="{StaticResource TextSecondaryBrush}"
-                               FontSize="13" HorizontalAlignment="Center" Margin="0,20"
-                               Visibility="{Binding PeriodRecords.Count,
-                                   Converter={StaticResource BoolToInvVis}}"/>
+                               FontSize="13" HorizontalAlignment="Center" Margin="0,20">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasPeriodRecords}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </StackPanel>
             </Border>
         </StackPanel>

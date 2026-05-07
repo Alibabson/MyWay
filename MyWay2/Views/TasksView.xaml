@@ -75,19 +75,12 @@
 
                     <TextBlock Text="Status:" Style="{StaticResource Label}" FontSize="11" Margin="0,0,4,0"/>
                     <ComboBox Style="{StaticResource DarkComboBox}" Width="100" Height="24" FontSize="11"
-                              SelectedValue="{Binding FilterStatus}" SelectedValuePath="Content" Margin="0,0,15,0">
-                        <ComboBoxItem Content="Wszystkie" IsSelected="True"/>
-                        <ComboBoxItem Content="Aktywne"/>
-                        <ComboBoxItem Content="Zaległe"/>
-                        <ComboBoxItem Content="Ukończone"/>
+                              ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding FilterStatus}" Margin="0,0,15,0">
                     </ComboBox>
 
                     <TextBlock Text="Sortuj:" Style="{StaticResource Label}" FontSize="11" Margin="0,0,4,0"/>
                     <ComboBox Style="{StaticResource DarkComboBox}" Width="100" Height="24" FontSize="11"
-                              SelectedValue="{Binding SortBy}" SelectedValuePath="Content">
-                        <ComboBoxItem Content="Data" IsSelected="True"/>
-                        <ComboBoxItem Content="Trudność"/>
-                        <ComboBoxItem Content="Nazwa"/>
+                              ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SortBy}">
                     </ComboBox>
                 </StackPanel>
 
@@ -168,9 +161,11 @@
                 <Border Style="{StaticResource Card}" Margin="0,0,0,10" Padding="5">
                     <StackPanel>
                         <TextBlock Text="📅 Wybierz dzień" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" Margin="5,0,0,2"/>
-                        <Viewbox MaxHeight="180">
-                            <Calendar SelectedDate="{Binding SelectedDate}" Background="Transparent" BorderThickness="0"/>
-                        </Viewbox>
+                        <Border Background="#E5E5E5" CornerRadius="8" Padding="5" Margin="0,5,0,0">
+                            <Viewbox MaxHeight="180">
+                                <Calendar SelectedDate="{Binding SelectedDate}" Background="Transparent" Foreground="Black" BorderThickness="0"/>
+                            </Viewbox>
+                        </Border>
                     </StackPanel>
                 </Border>
 
@@ -178,7 +173,7 @@
                     <StackPanel>
                         <TextBlock Text="Nowe zadanie" Style="{StaticResource SectionHeader}" FontSize="13" Margin="0,0,0,6"/>
 
-                        <TextBox Style="{StaticResource DarkTextBox}" Height="28" 
+                        <TextBox Style="{StaticResource DarkTextBox}" MinHeight="32" 
                                  Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>
 
                         <TextBlock Text="Trudność" Style="{StaticResource Label}" FontSize="11" Margin="0,0,0,3"/>

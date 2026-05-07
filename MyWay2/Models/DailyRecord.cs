@@ -7,7 +7,10 @@ namespace MyWay.Models
     {
         [ObservableProperty] private int _id;
         [ObservableProperty] private DateTime _date = DateTime.Today;
-        [ObservableProperty] private int _moodScore = 3; // 1-5
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(MoodLabel))]
+        [NotifyPropertyChangedFor(nameof(MoodEmoji))]
+        private int _moodScore = 0; // 0 means not set, 1-5 valid
         [ObservableProperty] private int _extraPoints;
         [ObservableProperty] private string _quoteOfTheDay = string.Empty;
         [ObservableProperty] private int _taskPoints;
@@ -16,6 +19,7 @@ namespace MyWay.Models
 
         public string MoodLabel => MoodScore switch
         {
+            0 => "Wybierz nastrój",
             1 => "😞 Fatalnie",
             2 => "😕 Słabo",
             3 => "😐 Średnio",
@@ -26,6 +30,7 @@ namespace MyWay.Models
 
         public string MoodEmoji => MoodScore switch
         {
+            0 => "❓",
             1 => "😞",
             2 => "😕",
             3 => "😐",

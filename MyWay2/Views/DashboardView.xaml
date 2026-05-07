@@ -47,14 +47,14 @@
 
                             <StackPanel Grid.Column="1" Margin="0,0,24,0" HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding TotalStreakDays}" FontSize="24" FontWeight="Black"
-                                           Foreground="#FF7043" HorizontalAlignment="Center"/>
-                                <TextBlock Text="suma dni streak" FontSize="10"
+                                           Foreground="{StaticResource AccentOrangeBrush}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="aktualny streak" FontSize="10"
                                            Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding BestStreak}" FontSize="24" FontWeight="Black"
-                                           Foreground="{StaticResource AccentPurpleBrush}" HorizontalAlignment="Center"/>
+                                           Foreground="{StaticResource AccentPinkBrush}" HorizontalAlignment="Center"/>
                                 <TextBlock Text="najlepszy streak" FontSize="10"
                                            Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center"/>
                             </StackPanel>
@@ -142,7 +142,7 @@
                         <TextBlock Text="😊 Twój nastrój dziś" Style="{StaticResource SectionHeader}" FontSize="14"/>
                         <TextBlock Text="{Binding TodayRecord.MoodLabel}" FontSize="28"
                                    HorizontalAlignment="Center" Margin="0,8"/>
-                        <Slider Minimum="1" Maximum="5" TickFrequency="1"
+                        <Slider Minimum="0" Maximum="5" TickFrequency="1"
                                 IsSnapToTickEnabled="True" TickPlacement="BottomRight"
                                 Value="{Binding TodayRecord.MoodScore}"
                                 Foreground="{StaticResource AccentPurpleBrush}"

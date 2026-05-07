@@ -81,6 +81,9 @@ namespace MyWay.ViewModels
             set { _sortBy = value; OnPropertyChanged(); ApplySort(); }
         }
 
+        public ObservableCollection<string> StatusOptions { get; } = new() { "Wszystkie", "Aktywne", "Zaległe", "Ukończone" };
+        public ObservableCollection<string> SortOptions { get; } = new() { "Data", "Trudność", "Nazwa", "Ukończone" };
+
         // ── Editing ────────────────────────────────────────────────────────
         private TaskItem? _editingTask;
         public TaskItem? EditingTask
