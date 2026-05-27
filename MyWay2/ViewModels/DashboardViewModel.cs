@@ -132,9 +132,14 @@ namespace MyWay.ViewModels
             var record = await _db.GetTodayRecordAsync();
             if (record == null)
             {
-                record = new DailyRecord { Date = DateTime.Today };
+                record = new DailyRecord { Date = DateTime.Today, MoodScore = 3 };
                 var quote = await _quoteService.GetDailyQuoteAsync();
                 record.QuoteOfTheDay = quote;
+                await _db.UpsertDailyRecordAsync(record);
+            }
+            else if (record.MoodScore == 0)
+            {
+                record.MoodScore = 3;
                 await _db.UpsertDailyRecordAsync(record);
             }
             TodayRecord = record;
@@ -167,6 +172,8 @@ namespace MyWay.ViewModels
             {
                 "Tydzień" => (DateTime.Today.AddDays(-6), DateTime.Today),
                 "Miesiąc" => (DateTime.Today.AddDays(-29), DateTime.Today),
+                "Rok" => (DateTime.Today.AddYears(-1).AddDays(1), DateTime.Today),
+                "Wszystkie" => (DateTime.MinValue, DateTime.Today),
                 _ => (DateTime.Today.AddDays(-6), DateTime.Today)
             };
 

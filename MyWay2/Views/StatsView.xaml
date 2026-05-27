@@ -5,76 +5,34 @@
     <ScrollViewer>
         <StackPanel Margin="24,20,24,24">
 
+            <!-- Section Header -->
+            <TextBlock Style="{StaticResource SectionHeader}" FontSize="18" Margin="0,0,0,12">
+                <Run Text="📊  Statystyki"/>
+            </TextBlock>
+
             <!-- Header panel -->
             <Border Style="{StaticResource FilterPanelCard}"
                     Margin="0,0,0,16"
-                    Padding="12">
+                    Padding="12,8">
 
-                <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                    <Grid Margin="0,0,0,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                    <!-- Lewa część: przyciski wyboru okresu -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        
+                        <TextBlock Text="Okres:"
+                                   Foreground="White"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
 
-                        <Border Grid.Column="0"
-                                Style="{StaticResource FilterTile}"
-                                Padding="7,4"
-                                Margin="0,0,8,0">
-                            <TextBlock Text="📊"
-                                       FontSize="14"
-                                       VerticalAlignment="Center"/>
-                        </Border>
-
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="Statystyki"
-                                       FontSize="16"
-                                       FontWeight="Bold"
-                                       Foreground="{StaticResource TextPrimaryBrush}"/>
-
-                            <TextBlock FontSize="10"
-                                       Foreground="{StaticResource TextPrimaryBrush}"
-                                       Opacity="0.85">
-                                <Run Text="Okres: "/>
-                                <Run Text="{Binding StatsPeriod, Mode=OneWay}"
-                                     FontWeight="Bold"/>
-                            </TextBlock>
-                        </StackPanel>
-
-                        <Button Grid.Column="2"
-                                Style="{StaticResource GreenButton}"
-                                Command="{Binding ExportPdfCommand}"
-                                IsEnabled="{Binding IsExporting, Converter={StaticResource BoolToInvVis}}"
-                                Height="30"
-                                Padding="12,6"
-                                FontSize="11"
-                                VerticalAlignment="Center">
-                            <TextBlock>
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Text" Value="📄 Eksportuj PDF"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsExporting}" Value="True">
-                                                <Setter Property="Text" Value="⏳ Eksportuję..."/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Button>
-                    </Grid>
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button Grid.Column="0"
-                                Content="7 dni"
+                        <!-- Tydzień -->
+                        <Button Content="Tydzień"
                                 Command="{Binding ChangePeriodCommand}"
                                 CommandParameter="Tydzień"
                                 Height="30"
@@ -96,12 +54,13 @@
                             </Button.Style>
                         </Button>
 
-                        <Button Grid.Column="1"
-                                Content="30 dni"
+                        <!-- Miesiąc -->
+                        <Button Content="Miesiąc"
                                 Command="{Binding ChangePeriodCommand}"
                                 CommandParameter="Miesiąc"
                                 Height="30"
-                                Padding="14,6">
+                                Padding="14,6"
+                                Margin="0,0,8,0">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource GhostButton}">
                                     <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
@@ -117,9 +76,76 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                    </Grid>
 
-                </StackPanel>
+                        <!-- Rok -->
+                        <Button Content="Rok"
+                                Command="{Binding ChangePeriodCommand}"
+                                CommandParameter="Rok"
+                                Height="30"
+                                Padding="14,6"
+                                Margin="0,0,8,0">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource GhostButton}">
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource AccentBlueShadowBrush}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StatsPeriod}" Value="Rok">
+                                            <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentPurpleShadowBrush}"/>
+                                            <Setter Property="BorderThickness" Value="0,0,0,3"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+
+                        <!-- Wszystkie -->
+                        <Button Content="Wszystkie"
+                                Command="{Binding ChangePeriodCommand}"
+                                CommandParameter="Wszystkie"
+                                Height="30"
+                                Padding="14,6">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource GhostButton}">
+                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource AccentBlueShadowBrush}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StatsPeriod}" Value="Wszystkie">
+                                            <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentPurpleShadowBrush}"/>
+                                            <Setter Property="BorderThickness" Value="0,0,0,3"/>
+                                            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Prawa część: Eksport PDF -->
+                    <Button Grid.Column="1"
+                            Style="{StaticResource GreenButton}"
+                            Command="{Binding ExportPdfCommand}"
+                            IsEnabled="{Binding IsExporting, Converter={StaticResource BoolToInvVis}}"
+                            Height="30"
+                            Padding="12,6"
+                            FontSize="11"
+                            VerticalAlignment="Center">
+                        <TextBlock>
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="📄 Eksportuj PDF"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsExporting}" Value="True">
+                                            <Setter Property="Text" Value="⏳ Eksportuję..."/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Button>
+                </Grid>
             </Border>
 
             <!-- Summary cards -->

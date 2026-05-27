@@ -55,10 +55,6 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
             <TextBlock Text="✅ Zadania" Style="{StaticResource SectionHeader}" FontSize="18" Margin="0"/>
-            <Border Background="{StaticResource AccentPurpleBrush}" CornerRadius="8"
-                    Padding="4,0" Margin="8,0,0,8" VerticalAlignment="Center">
-                <TextBlock Foreground="White" FontSize="9" FontWeight="Bold" Text="{Binding Tasks.Count, Mode=OneWay}"/>
-            </Border>
         </StackPanel>
 
         <Border Grid.Row="1"
@@ -286,10 +282,6 @@
 
                                         <StackPanel Orientation="Horizontal"
                                 Margin="0,2,0,0">
-                                            <TextBlock Text="Termin: "
-                                   FontSize="10"
-                                   Foreground="{StaticResource TextSecondaryBrush}"/>
-
                                             <TextBlock Text="{Binding DueDate, StringFormat={}{0:dd.MM.yyyy}}">
                                                 <TextBlock.Style>
                                                     <Style TargetType="TextBlock" BasedOn="{StaticResource TaskDateText}">
@@ -501,6 +493,120 @@
                     </StackPanel>
                 </Border>
             </StackPanel>
+        </Grid>
+
+        <!-- MODAL OVERLAY: TRYB SKUPIENIA (FOCUS MODE) -->
+        <Grid Grid.Row="0" Grid.RowSpan="3"
+              Panel.ZIndex="1000"
+              Visibility="{Binding HasFocusTask, Converter={StaticResource BoolToVis}}">
+            
+            <!-- Dimmed Background -->
+            <Border Background="#D90B0914"/>
+            
+            <!-- Centered Modal Content Card -->
+            <Border Width="450" Height="300"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="{StaticResource BgCardBrush}"
+                    BorderBrush="{StaticResource AccentPurpleShadowBrush}"
+                    BorderThickness="1,1,1,4"
+                    CornerRadius="16"
+                    Padding="24">
+                <Border.Effect>
+                    <DropShadowEffect Color="{StaticResource CardShadow}" BlurRadius="20" ShadowDepth="4" Opacity="0.5"/>
+                </Border.Effect>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Header -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="🎯" FontSize="20" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="TRYB SKUPIENIA" FontSize="16" FontWeight="Black"
+                                   Foreground="{StaticResource AccentPurpleBrush}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
+                    <!-- Middle Content: Task Title and Big Timer -->
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <!-- Task Title -->
+                        <TextBlock Text="{Binding FocusTask.Title}"
+                                   FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"
+                                   HorizontalAlignment="Center" Margin="0,0,0,12" TextWrapping="Wrap" MaxWidth="380"
+                                   TextAlignment="Center"/>
+                        
+                        <!-- Big Timer Display -->
+                        <TextBlock Text="{Binding TimerDisplay}"
+                                   FontSize="48" FontWeight="Black" Foreground="White"
+                                   HorizontalAlignment="Center" FontFamily="Consolas, Monospace"/>
+                        
+                        <!-- Pulsing/Status text -->
+                        <TextBlock FontSize="11" HorizontalAlignment="Center" Margin="0,4,0,0">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding TimerRunning}" Value="True">
+                                            <Setter Property="Text" Value="Czas płynie... Skup się na zadaniu!" />
+                                            <Setter Property="Foreground" Value="{StaticResource AccentGreenBrush}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding TimerRunning}" Value="False">
+                                            <Setter Property="Text" Value="Wstrzymano" />
+                                            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                    
+                    <!-- Footer Buttons -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Toggle Button (Start / Pause) -->
+                        <Button Grid.Column="0"
+                                Command="{Binding ToggleTimerCommand}"
+                                Height="36" FontSize="11" Padding="12,0">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource BaseButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding TimerRunning}" Value="True">
+                                            <Setter Property="Content" Value="⏸ Pauza"/>
+                                            <Setter Property="Background" Value="{StaticResource AccentBlueBrush}"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentBlueShadowBrush}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding TimerRunning}" Value="False">
+                                            <Setter Property="Content" Value="▶ Start"/>
+                                            <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource AccentPurpleShadowBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        
+                        <!-- Save Button -->
+                        <Button Grid.Column="2" Content="💾 Zapisz"
+                                Style="{StaticResource GreenButton}"
+                                Command="{Binding SaveTimerCommand}"
+                                Height="36" FontSize="11" Padding="12,0"/>
+                        
+                        <!-- Exit Button -->
+                        <Button Grid.Column="4" Content="✕ Wyjdź"
+                                Style="{StaticResource DangerButton}"
+                                Command="{Binding StopFocusCommand}"
+                                Height="36" FontSize="11" Padding="12,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
