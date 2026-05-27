@@ -16,7 +16,7 @@
         </Style>
 
         <Style x:Key="SegmentedListBoxItem" TargetType="ListBoxItem">
-            <Setter Property="Background" Value="#12121F"/>
+            <Setter Property="Background" Value="#12121F"/> 
             <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
             <Setter Property="Padding" Value="8,4"/>
             <Setter Property="Margin" Value="0,0,4,4"/>
@@ -61,42 +61,131 @@
             </Border>
         </StackPanel>
 
-        <Border Grid.Row="1" Style="{StaticResource Card}" Margin="0,0,0,10" Padding="10,6">
+        <Border Grid.Row="1"
+        Style="{StaticResource FilterPanelCard}"
+        Margin="0,0,0,10">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Szukaj:" Style="{StaticResource Label}" FontSize="11" Margin="0,0,4,0"/>
-                    <TextBox Style="{StaticResource DarkTextBox}" Width="100" Height="24" FontSize="11"
-                             Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,15,0"/>
+                <!-- Lewa część: wyszukiwanie, status, sortowanie -->
+                <StackPanel Grid.Column="0"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center">
 
-                    <TextBlock Text="Status:" Style="{StaticResource Label}" FontSize="11" Margin="0,0,4,0"/>
-                    <ComboBox Style="{StaticResource DarkComboBox}" Width="100" Height="24" FontSize="11"
-                              ItemsSource="{Binding StatusOptions}" SelectedItem="{Binding FilterStatus}" Margin="0,0,15,0">
-                    </ComboBox>
+                    <!-- Szukaj -->
+                    <Border Style="{StaticResource FilterTile}"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="🔎"
+                               FontSize="12"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Margin="0,0,6,0"/>
 
-                    <TextBlock Text="Sortuj:" Style="{StaticResource Label}" FontSize="11" Margin="0,0,4,0"/>
-                    <ComboBox Style="{StaticResource DarkComboBox}" Width="100" Height="24" FontSize="11"
-                              ItemsSource="{Binding SortOptions}" SelectedItem="{Binding SortBy}">
-                    </ComboBox>
+                            <TextBox Style="{StaticResource FilterTextBox}"
+                             Width="120"
+                             Height="30"
+                             Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Status -->
+                    <Border Style="{StaticResource FilterTile}"
+                    Margin="0,0,10,0"
+                    VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Status:"
+                               Foreground="White"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,6,0"/>
+
+                            <ComboBox Style="{StaticResource FilterComboBox}"
+                              Width="120"
+                              Height="30"
+                              ItemsSource="{Binding StatusOptions}"
+                              SelectedItem="{Binding FilterStatus}"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Sortuj -->
+                    <Border Style="{StaticResource FilterTile}"
+                    VerticalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Sortuj:"
+                               Foreground="White"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               VerticalAlignment="Center"
+                               Margin="0,0,6,0"/>
+
+                            <ComboBox Style="{StaticResource FilterComboBox}"
+                              Width="120"
+                              Height="30"
+                              ItemsSource="{Binding SortOptions}"
+                              SelectedItem="{Binding SortBy}"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                    <StackPanel Margin="0,0,12,0">
-                        <TextBlock Text="{Binding TodayCompleted}" FontSize="14" FontWeight="Bold" Foreground="{StaticResource AccentGreenBrush}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="dziś" FontSize="8" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel Margin="0,0,12,0">
-                        <TextBlock Text="{Binding OverdueCount}" FontSize="14" FontWeight="Bold" Foreground="#FF7043" HorizontalAlignment="Center"/>
-                        <TextBlock Text="zaległe" FontSize="8" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="{Binding TotalPoints}" FontSize="14" FontWeight="Bold" Foreground="{StaticResource AccentPurpleBrush}" HorizontalAlignment="Center"/>
-                        <TextBlock Text="pkt" FontSize="8" Foreground="{StaticResource TextSecondaryBrush}" HorizontalAlignment="Center"/>
-                    </StackPanel>
+                <!-- Prawa część: statystyki -->
+                <StackPanel Grid.Column="1"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="15,0,0,0">
+
+                    <Border Style="{StaticResource FilterTile}"
+                    Padding="10,4"
+                    Margin="0,0,8,0">
+                        <StackPanel>
+                            <TextBlock Text="{Binding TodayCompleted}"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                            <TextBlock Text="dziś"
+                               FontSize="8"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FilterTile}"
+                    Padding="10,4"
+                    Margin="0,0,8,0">
+                        <StackPanel>
+                            <TextBlock Text="{Binding OverdueCount}"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                            <TextBlock Text="zaległe"
+                               FontSize="8"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource FilterTile}"
+                    Padding="10,4">
+                        <StackPanel>
+                            <TextBlock Text="{Binding TotalPoints}"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                            <TextBlock Text="pkt"
+                               FontSize="8"
+                               Foreground="{StaticResource TextPrimaryBrush}"
+                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
             </Grid>
         </Border>
@@ -123,9 +212,31 @@
                             </Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
+                    
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="{StaticResource BgCardBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="6" Padding="8,5">
+                            <Border>
+                                <Border.Style>
+                                    <Style TargetType="Border" BasedOn="{StaticResource TaskItemCard}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                <Setter Property="Background" Value="#2F6F73"/>
+                                                <Setter Property="BorderBrush" Value="{StaticResource AccentGreenShadowBrush}"/>
+                                                <Setter Property="Opacity" Value="0.85"/>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding IsCompleted}" Value="False">
+                                                <Setter Property="Background" Value="{StaticResource AccentPinkBrush}"/>
+                                                <Setter Property="BorderBrush" Value="{StaticResource AccentPinkShadowBrush}"/>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding IsOverdue}" Value="True">
+                                                <Setter Property="BorderBrush" Value="{StaticResource DangerRedShadowBrush}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -133,22 +244,92 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <CheckBox Grid.Column="0" IsChecked="{Binding IsCompleted, Mode=OneWay}" 
-                                              Command="{Binding DataContext.ToggleCompleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}" 
-                                              CommandParameter="{Binding}" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                    <CheckBox Grid.Column="0"
+                          Style="{StaticResource PrettyCheckBox}"
+                          IsChecked="{Binding IsCompleted, Mode=OneWay}"
+                          Command="{Binding DataContext.ToggleCompleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                          CommandParameter="{Binding}"
+                          Margin="0,0,10,0"/>
 
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Title}" FontSize="12" Foreground="{Binding IsOverdue, Converter={StaticResource OverdueToColor}}" TextDecorations="{Binding IsCompleted, Converter={StaticResource CompletedToStrike}}"/>
-                                            <Border Background="{Binding Difficulty, Converter={StaticResource DiffToColor}}" CornerRadius="3" Padding="3,0" Margin="5,0,0,0" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding DifficultyIcon}" FontSize="8"/>
+                                    <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+
+                                        <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding Title}"
+                                   TextDecorations="{Binding IsCompleted, Converter={StaticResource CompletedToStrike}}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource TaskTitleText}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                                <Setter Property="Foreground" Value="{StaticResource BgDarkBrush}"/>
+                                                                <Setter Property="Opacity" Value="0.8"/>
+                                                            </DataTrigger>
+
+                                                            <DataTrigger Binding="{Binding IsOverdue}" Value="True">
+                                                                <Setter Property="Foreground" Value="#FFB3A7"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+
+                                            <Border Style="{StaticResource TaskDifficultyBadge}"
+                                Background="{Binding Difficulty, Converter={StaticResource DiffToColor}}">
+                                                <TextBlock Text="{Binding DifficultyIcon}"
+                                       FontSize="10"
+                                       Foreground="White"
+                                       FontWeight="Bold"/>
                                             </Border>
                                         </StackPanel>
-                                        <TextBlock Text="{Binding DueDate, StringFormat={}{0:dd.MM.yyyy}}" FontSize="9" Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                        <StackPanel Orientation="Horizontal"
+                                Margin="0,2,0,0">
+                                            <TextBlock Text="Termin: "
+                                   FontSize="10"
+                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+
+                                            <TextBlock Text="{Binding DueDate, StringFormat={}{0:dd.MM.yyyy}}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource TaskDateText}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                                <Setter Property="Foreground" Value="#B8E5DF"/>
+                                                            </DataTrigger>
+
+                                                            <DataTrigger Binding="{Binding IsOverdue}" Value="True">
+                                                                <Setter Property="Foreground" Value="#FF7043"/>
+                                                                <Setter Property="FontWeight" Value="Bold"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
                                     </StackPanel>
-                                    <StackPanel Grid.Column="2" Orientation="Horizontal">
-                                        <Button Content="🎯" Style="{StaticResource GhostButton}" Padding="4,2" FontSize="11" Command="{Binding DataContext.StartFocusCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}"/>
-                                        <Button Content="🗑" Style="{StaticResource DangerButton}" Padding="4,2" FontSize="11" Margin="3,0,0,0" Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListView}}" CommandParameter="{Binding}"/>
+
+                                    <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0">
+
+                                        <Button Content="🎯"
+                            Style="{StaticResource GhostButton}"
+                            Padding="7,4"
+                            FontSize="12"
+                            MinWidth="30"
+                            Command="{Binding DataContext.StartFocusCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                            CommandParameter="{Binding}"/>
+
+                                        <Button Content="🗑"
+                            Style="{StaticResource DangerButton}"
+                            Padding="7,4"
+                            FontSize="12"
+                            MinWidth="30"
+                            Margin="5,0,0,0"
+                            Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                            CommandParameter="{Binding}"/>
                                     </StackPanel>
                                 </Grid>
                             </Border>
@@ -158,35 +339,139 @@
             </Border>
 
             <StackPanel Grid.Column="2">
-                <Border Style="{StaticResource Card}" Margin="0,0,0,10" Padding="5">
+                <Border Style="{StaticResource CalendarCard}">
                     <StackPanel>
-                        <TextBlock Text="📅 Wybierz dzień" FontSize="12" Foreground="{StaticResource TextSecondaryBrush}" Margin="5,0,0,2"/>
-                        <Border Background="#E5E5E5" CornerRadius="8" Padding="5" Margin="0,5,0,0">
-                            <Viewbox MaxHeight="180">
-                                <Calendar SelectedDate="{Binding SelectedDate}" Background="Transparent" Foreground="Black" BorderThickness="0"/>
-                            </Viewbox>
+
+                        <Grid Margin="2,0,2,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0"
+                    Background="{StaticResource AccentBlueBrush}"
+                    BorderBrush="{StaticResource AccentBlueShadowBrush}"
+                    BorderThickness="0,0,0,2"
+                    CornerRadius="8"
+                    Padding="6,3"
+                    Margin="0,0,8,0">
+                                <TextBlock Text="📅"
+                           FontSize="13"
+                           VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Wybierz dzień"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Text="{Binding SelectedDate, StringFormat={}{0:dd MMMM yyyy}}"
+                           FontSize="10"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,1,0,0"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Border Style="{StaticResource CalendarInnerPanel}">
+                            <Border Background="{StaticResource AccentBlueLightBrush}"
+                    BorderBrush="{StaticResource AccentBlueShadowBrush}"
+                    BorderThickness="1"
+                    CornerRadius="10"
+                    Padding="5">
+                                <Viewbox MaxHeight="185">
+                                    <Calendar SelectedDate="{Binding SelectedDate}"
+                              Style="{StaticResource PrettyCalendar}"/>
+                                </Viewbox>
+                            </Border>
                         </Border>
+
                     </StackPanel>
                 </Border>
-
-                <Border Style="{StaticResource Card}" Padding="10">
+                <Border Style="{StaticResource NewTaskCard}" Padding="10">
                     <StackPanel>
-                        <TextBlock Text="Nowe zadanie" Style="{StaticResource SectionHeader}" FontSize="13" Margin="0,0,0,6"/>
 
-                        <TextBox Style="{StaticResource DarkTextBox}" MinHeight="32" 
-                                 Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,6"/>
+                        <Grid Margin="0,0,0,6">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Trudność" Style="{StaticResource Label}" FontSize="11" Margin="0,0,0,3"/>
-                        <ListBox Style="{StaticResource SegmentedListBox}" ItemContainerStyle="{StaticResource SegmentedListBoxItem}"
-                                 SelectedValue="{Binding NewDifficulty}" SelectedValuePath="Tag" Margin="0,0,0,8">
-                            <ListBoxItem Content="⭐ Łatwe" Tag="1" IsSelected="True"/>
-                            <ListBoxItem Content="⭐⭐ Średnie" Tag="2"/>
+                            <Border Grid.Column="0"
+                    Style="{StaticResource NewTaskHeaderIcon}"
+                    Padding="5,2"
+                    Margin="0,0,6,0">
+                                <TextBlock Text="➕"
+                           FontSize="11"
+                           VerticalAlignment="Center"/>
+                            </Border>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Nowe zadanie"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimaryBrush}"/>
+
+                                <TextBlock Text="Dodaj do wybranego dnia"
+                           FontSize="9"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <TextBlock Text="Nazwa zadania"
+                   Style="{StaticResource NewTaskLabel}"
+                   Margin="0,0,0,2"/>
+
+                        <TextBox Style="{StaticResource DarkTextBox}"
+                 Height="30"
+                 FontSize="11"
+                 Padding="8,2"
+                 Text="{Binding NewTitle, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,0,6"/>
+
+                        <TextBlock Text="Trudnosc"
+                   Style="{StaticResource NewTaskLabel}"
+                   Margin="0,0,0,2"/>
+
+                        <ListBox Style="{StaticResource SegmentedListBox}"
+                 ItemContainerStyle="{StaticResource SegmentedListBoxItem}"
+                 SelectedValue="{Binding NewDifficulty}"
+                 SelectedValuePath="Tag"
+                 Margin="0,0,0,6">
+
+                            <ListBoxItem Content="⭐ Latwe" Tag="1" IsSelected="True"/>
+                            <ListBoxItem Content="⭐⭐ Srednie" Tag="2"/>
                             <ListBoxItem Content="⭐⭐⭐ Trudne" Tag="3"/>
                         </ListBox>
 
-                        <TextBlock Text="Termin" Style="{StaticResource Label}" FontSize="11" Margin="0,0,0,3"/>
-                        <Border Background="#12121F" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="5" Padding="5,3" Margin="0,0,0,12">
-                            <TextBlock Text="{Binding NewDueDate, StringFormat={}{0:dd MMMM yyyy}}" FontSize="11" Foreground="{StaticResource AccentPurpleBrush}" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Termin"
+                   Style="{StaticResource NewTaskLabel}"
+                   Margin="0,0,0,2"/>
+
+                        <Border Style="{StaticResource NewTaskDateBox}"
+                Padding="6,3"
+                Margin="0,0,0,8">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0"
+                           Text="📅"
+                           FontSize="11"
+                           VerticalAlignment="Center"
+                           Margin="0,0,5,0"/>
+
+                                <TextBlock Grid.Column="1"
+                           Text="{Binding NewDueDate, StringFormat={}{0:dd MMMM yyyy}}"
+                           FontSize="10"
+                           Foreground="White"
+                           FontWeight="Bold"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                            </Grid>
                         </Border>
 
                         <Grid>
@@ -195,9 +480,24 @@
                                 <ColumnDefinition Width="6"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Content="➕ Dodaj" Style="{StaticResource BaseButton}" Command="{Binding AddTaskCommand}" Height="28" FontSize="11"/>
-                            <Button Grid.Column="2" Content="✅ Zrobione" Style="{StaticResource GreenButton}" Command="{Binding AddCompletedTaskCommand}" Height="28" FontSize="11"/>
+
+                            <Button Grid.Column="0"
+                    Content="➕ Dodaj"
+                    Style="{StaticResource OrangeButton}"
+                    Command="{Binding AddTaskCommand}"
+                    Height="28"
+                    FontSize="10"
+                    Padding="8,4"/>
+
+                            <Button Grid.Column="2"
+                    Content="✅ Zrobione"
+                    Style="{StaticResource GreenButton}"
+                    Command="{Binding AddCompletedTaskCommand}"
+                    Height="28"
+                    FontSize="10"
+                    Padding="8,4"/>
                         </Grid>
+
                     </StackPanel>
                 </Border>
             </StackPanel>

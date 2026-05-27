@@ -30,9 +30,9 @@ namespace MyWay.Converters
             {
                 return diff switch
                 {
-                    1 => new SolidColorBrush(Color.FromRgb(76, 175, 80)),   // green
-                    2 => new SolidColorBrush(Color.FromRgb(255, 167, 38)),  // orange
-                    3 => new SolidColorBrush(Color.FromRgb(229, 57, 53)),   // red
+                    1 => new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5DC0B3")),   // green
+                    2 => new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5DA1C0")),   // blue
+                    3 => new SolidColorBrush((Color)ColorConverter.ConvertFromString("#C05DBB")),   // pink
                     _ => Brushes.Gray
                 };
             }
@@ -118,8 +118,8 @@ namespace MyWay.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             => value is bool b && b
-                ? new SolidColorBrush(Color.FromRgb(42, 182, 115))
-                : new SolidColorBrush(Color.FromRgb(50, 50, 70));
+               ? new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5DC0B3"))
+               : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#625DC0"));
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => throw new NotImplementedException();
     }

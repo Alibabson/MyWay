@@ -3,28 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\tasksview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\tasksview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\services\\quoteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:services\\quoteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\models\\dailyrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:models\\dailyrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\converters\\converters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:converters\\converters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,68 +62,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Views\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "TaskItem.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Models\\TaskItem.cs",
+              "RelativeDocumentMoniker": "Models\\TaskItem.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Models\\TaskItem.cs",
+              "RelativeToolTip": "Models\\TaskItem.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-07T12:08:05.614Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-12T18:36:40.432Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "Views\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml",
-              "RelativeToolTip": "Views\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-07T11:45:53.751Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DashboardView.xaml",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\DashboardView.xaml",
-              "RelativeDocumentMoniker": "Views\\DashboardView.xaml",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\DashboardView.xaml",
-              "RelativeToolTip": "Views\\DashboardView.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-07T11:16:06.139Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Styles.xaml",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Resources\\Styles.xaml",
-              "RelativeDocumentMoniker": "Resources\\Styles.xaml",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Resources\\Styles.xaml",
-              "RelativeToolTip": "Resources\\Styles.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-07T11:49:55.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "TasksView.xaml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\TasksView.xaml",
               "RelativeDocumentMoniker": "Views\\TasksView.xaml",
               "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\TasksView.xaml",
               "RelativeToolTip": "Views\\TasksView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-07T12:07:32.808Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-11T16:48:52.256Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
+              "Title": "DashboardView.xaml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\DashboardView.xaml",
+              "RelativeDocumentMoniker": "Views\\DashboardView.xaml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\DashboardView.xaml",
+              "RelativeToolTip": "Views\\DashboardView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-07T11:16:06.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "StatsView.xaml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\StatsView.xaml",
               "RelativeDocumentMoniker": "Views\\StatsView.xaml",
@@ -116,6 +105,77 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-05-07T12:07:24.148Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Styles.xaml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Resources\\Styles.xaml",
+              "RelativeDocumentMoniker": "Resources\\Styles.xaml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Resources\\Styles.xaml",
+              "RelativeToolTip": "Resources\\Styles.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-12T19:31:43.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Views\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "Views\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-07T11:45:53.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "QuoteService.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Services\\QuoteService.cs",
+              "RelativeDocumentMoniker": "Services\\QuoteService.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Services\\QuoteService.cs",
+              "RelativeToolTip": "Services\\QuoteService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T18:01:21.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DailyRecord.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Models\\DailyRecord.cs",
+              "RelativeDocumentMoniker": "Models\\DailyRecord.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Models\\DailyRecord.cs",
+              "RelativeToolTip": "Models\\DailyRecord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-12T17:59:54.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Converters.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Converters\\Converters.cs",
+              "RelativeDocumentMoniker": "Converters\\Converters.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Converters\\Converters.cs",
+              "RelativeToolTip": "Converters\\Converters.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAAC8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-09T08:27:02.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-07T12:08:05.614Z"
             }
           ]
         }
