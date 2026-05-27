@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\dashboardview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -15,8 +15,8 @@
       "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\tasksview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|solutionrelative:views\\statsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CFAC8BB1-8745-46D8-8DFD-ECEB06E60F17}|MyWay2.csproj|c:\\users\\dell\\desktop\\myway\\myway2\\models\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -81,7 +81,8 @@
               "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\TasksView.xaml",
               "RelativeToolTip": "Views\\TasksView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-11T16:48:52.256Z"
+              "WhenOpened": "2026-05-11T16:48:52.256Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -92,11 +93,12 @@
               "ToolTip": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\DashboardView.xaml",
               "RelativeToolTip": "Views\\DashboardView.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-07T11:16:06.139Z"
+              "WhenOpened": "2026-05-07T11:16:06.139Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "StatsView.xaml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Views\\StatsView.xaml",
               "RelativeDocumentMoniker": "Views\\StatsView.xaml",
@@ -108,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Styles.xaml",
               "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\MyWay\\MyWay2\\Resources\\Styles.xaml",
               "RelativeDocumentMoniker": "Resources\\Styles.xaml",

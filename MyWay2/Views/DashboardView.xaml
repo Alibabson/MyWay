@@ -10,6 +10,7 @@
                      Foreground="{StaticResource TextSecondaryBrush}" FontSize="14" FontWeight="Normal"/>
             </TextBlock>
 
+            <!-- GŁÓWNY PANEL ZAKŁADKI (Zielony Cytat) -->
             <Border Style="{StaticResource QuoteCard}" Margin="0,0,0,24">
                 <StackPanel>
                     <TextBlock Text="💬 Cytat dnia" Style="{StaticResource Label}" Margin="0,0,0,6"/>
@@ -26,256 +27,265 @@
                     <ColumnDefinition Width="340"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- ========================================== -->
+                <!-- LEWA KOLUMNA: NAWYKI                       -->
+                <!-- ========================================== -->
                 <StackPanel Grid.Column="0">
 
-
-                    <Border Style="{StaticResource FilterPanelCard}" Margin="0,0,0,16" Padding="12">
+                    <!-- Główny kontener na wszystko (Fioletowy) -->
+                    <Border Style="{StaticResource Card}" Padding="16">
                         <StackPanel>
 
-                            <!-- Naglowek -->
-                            <Grid Margin="0,0,0,10">
+                            <!-- NAGŁÓWEK W PANELU -->
+                            <Grid Margin="2,0,2,16">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Border Grid.Column="0"
-                    Style="{StaticResource FilterTile}"
-                    Padding="7,4"
-                    Margin="0,0,8,0">
+                                        Background="{StaticResource AccentGreenBrush}"
+                                        BorderBrush="{StaticResource AccentGreenShadowBrush}"
+                                        BorderThickness="0,0,0,2"
+                                        CornerRadius="8"
+                                        Padding="6,3"
+                                        Margin="0,0,8,0">
                                     <TextBlock Text="🔥"
-                           FontSize="14"
-                           VerticalAlignment="Center"/>
+                                               FontSize="13"
+                                               VerticalAlignment="Center"/>
                                 </Border>
 
-                                <StackPanel Grid.Column="1">
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                     <TextBlock Text="Nawyki"
-                           FontSize="16"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource TextPrimaryBrush}"/>
-
-                                    <TextBlock Text="Twoje codzienne cele i streaki"
-                           FontSize="10"
-                           Foreground="{StaticResource TextPrimaryBrush}"
-                           Opacity="0.85"/>
+                                               FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Buduj dobre przyzwyczajenia"
+                                               FontSize="10"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               Margin="0,1,0,0"/>
                                 </StackPanel>
                             </Grid>
 
-                            <!-- Statystyki + dodawanie -->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                            <!-- ZIELONY MINI-PANEL (Statystyki i dodawanie) -->
+                            <Border Background="{StaticResource AccentGreenBrush}" 
+                                    BorderBrush="{StaticResource AccentGreenShadowBrush}" 
+                                    BorderThickness="0,0,0,3" 
+                                    CornerRadius="10" Padding="12,10" Margin="0,0,0,16">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Border Grid.Column="0"
-                    Style="{StaticResource FilterTile}"
-                    Padding="12,6"
-                    Margin="0,0,10,0">
-                                    <StackPanel HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding CompletedToday}"
-                               FontSize="20"
-                               FontWeight="Black"
-                               Foreground="{StaticResource TextPrimaryBrush}"
-                               HorizontalAlignment="Center"/>
+                                    <!-- Statystyki w oddzielnych ramkach (styl z TasksView) -->
+                                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
 
-                                        <TextBlock Text="ukonczone dzis"
-                               FontSize="9"
-                               Foreground="{StaticResource TextPrimaryBrush}"
-                               HorizontalAlignment="Center"/>
+                                        <Border BorderBrush="{StaticResource AccentGreenShadowBrush}" BorderThickness="1" CornerRadius="8" Padding="12,4" Margin="0,0,8,0">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding CompletedToday}" FontSize="15" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="dziś" FontSize="8" Foreground="White" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border BorderBrush="{StaticResource AccentGreenShadowBrush}" BorderThickness="1" CornerRadius="8" Padding="12,4" Margin="0,0,8,0">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding TotalStreakDays}" FontSize="15" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="streak" FontSize="8" Foreground="White" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+
+                                        <Border BorderBrush="{StaticResource AccentGreenShadowBrush}" BorderThickness="1" CornerRadius="8" Padding="12,4">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding BestStreak}" FontSize="15" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="rekord" FontSize="8" Foreground="White" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </Border>
+
                                     </StackPanel>
-                                </Border>
 
-                                <Border Grid.Column="1"
-                    Style="{StaticResource FilterTile}"
-                    Padding="12,6"
-                    Margin="0,0,10,0">
-                                    <StackPanel HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding TotalStreakDays}"
-                               FontSize="20"
-                               FontWeight="Black"
-                               Foreground="{StaticResource TextPrimaryBrush}"
-                               HorizontalAlignment="Center"/>
-
-                                        <TextBlock Text="aktualny streak"
-                               FontSize="9"
-                               Foreground="{StaticResource TextPrimaryBrush}"
-                               HorizontalAlignment="Center"/>
+                                    <!-- Pole dodawania -->
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                        <TextBox Style="{StaticResource DarkTextBox}"
+                                                 Text="{Binding NewHabitTitle, UpdateSourceTrigger=PropertyChanged}"
+                                                 Width="150" Margin="0,0,8,0" VerticalContentAlignment="Center" Height="30" FontSize="11" Padding="8,2"/>
+                                        <!-- Przycisk jest fioletowy (BaseButton), żeby był widoczny na zielonym tle mini-panelu -->
+                                        <Button Content="➕ Dodaj" Style="{StaticResource BaseButton}" FontSize="11"
+                                                Command="{Binding AddHabitCommand}" Padding="10,0" Height="30"/>
                                     </StackPanel>
-                                </Border>
+                                </Grid>
+                            </Border>
 
-                                <Border Grid.Column="2"
-                    Style="{StaticResource FilterTile}"
-                    Padding="12,6"
-                    Margin="0,0,12,0">
-                                    <StackPanel HorizontalAlignment="Center">
-                                        <TextBlock Text="{Binding BestStreak}"
-                               FontSize="20"
-                               FontWeight="Black"
-                               Foreground="{StaticResource TextPrimaryBrush}"
-                               HorizontalAlignment="Center"/>
+                            <!-- Lista Nawyków w głównym fioletowym panelu -->
+                            <ItemsControl ItemsSource="{Binding Habits}" Padding="0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="0,0,0,8"
+                                                BorderThickness="0,0,0,3" 
+                                                CornerRadius="8" Padding="12,10">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Background" Value="{StaticResource BgCardBrush}"/>
+                                                    <Setter Property="BorderBrush" Value="{StaticResource CardShadowBrush}"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsCompletedToday}" Value="True">
+                                                            <Setter Property="Background" Value="#2F6F73"/>
+                                                            <Setter Property="BorderBrush" Value="{StaticResource AccentGreenShadowBrush}"/>
+                                                            <Setter Property="Opacity" Value="0.85"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
 
-                                        <TextBlock Text="najlepszy streak"
-                               FontSize="9"
-                               Foreground="{StaticResource TextPrimaryBrush}"
-                               HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </Border>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
 
-                                <StackPanel Grid.Column="3"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center">
-
-                                    <TextBox Style="{StaticResource FilterTextBox}"
-                         Text="{Binding NewHabitTitle, UpdateSourceTrigger=PropertyChanged}"
-                         Width="170"
-                         Height="30"
-                         FontSize="11"
-                         Margin="0,0,8,0"
-                         VerticalContentAlignment="Center">
-                                        <TextBox.InputBindings>
-                                            <KeyBinding Key="Return"
-                                    Command="{Binding AddHabitCommand}"/>
-                                        </TextBox.InputBindings>
-                                    </TextBox>
-
-                                    <Button Content="➕ Dodaj"
-                        Style="{StaticResource GreenButton}"
-                        Command="{Binding AddHabitCommand}"
-                        Padding="12,6"
-                        Height="30"
-                        FontSize="11"/>
-                                </StackPanel>
-                            </Grid>
-
-                        </StackPanel>
-                    </Border>
-
-                    <Border Style="{StaticResource Card}" Padding="0">
-                        <ItemsControl ItemsSource="{Binding Habits}" Padding="12">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border>
-                                        <Border.Style>
-                                            <Style TargetType="Border" BasedOn="{StaticResource TaskItemCard}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsCompletedToday}" Value="True">
-                                                        <Setter Property="Background" Value="#2F6F73"/>
-                                                        <Setter Property="BorderBrush" Value="{StaticResource AccentGreenShadowBrush}"/>
-                                                        <Setter Property="Opacity" Value="0.85"/>
-                                                    </DataTrigger>
-
-                                                    <DataTrigger Binding="{Binding IsCompletedToday}" Value="False">
-                                                        <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
-                                                        <Setter Property="BorderBrush" Value="{StaticResource AccentPurpleShadowBrush}"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <CheckBox Grid.Column="0"
-                                  Style="{StaticResource PrettyCheckBox}"
-                                  IsChecked="{Binding IsCompletedToday, Mode=OneWay}"
-                                  Command="{Binding DataContext.ToggleHabitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                  CommandParameter="{Binding}"
-                                  Margin="0,0,10,0"/>
-
-                                            <StackPanel Grid.Column="1"
-                                    VerticalAlignment="Center">
-
-                                                <TextBlock Text="{Binding Title}"
-                                       FontSize="14"
-                                       FontWeight="SemiBold">
-                                                    <TextBlock.Style>
-                                                        <Style TargetType="TextBlock" BasedOn="{StaticResource TaskTitleText}">
-                                                            <Style.Triggers>
-                                                                <DataTrigger Binding="{Binding IsCompletedToday}" Value="True">
-                                                                    <Setter Property="Foreground" Value="#CFEFED"/>
-                                                                    <Setter Property="Opacity" Value="0.85"/>
-                                                                    <Setter Property="TextDecorations" Value="Strikethrough"/>
-                                                                </DataTrigger>
-
-                                                                <DataTrigger Binding="{Binding IsCompletedToday}" Value="False">
-                                                                    <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-                                                                </DataTrigger>
-                                                            </Style.Triggers>
-                                                        </Style>
-                                                    </TextBlock.Style>
-                                                </TextBlock>
-
-                                                <StackPanel Orientation="Horizontal"
-                                        Margin="0,3,0,0">
-
-                                                    <TextBlock Text="{Binding StreakLabel}"
-                                           FontSize="10"
-                                           FontWeight="SemiBold"
-                                           Foreground="{StaticResource TextSecondaryBrush}"/>
-
-                                                    <TextBlock FontSize="10"
-                                           Foreground="{StaticResource TextSecondaryBrush}"
-                                           Margin="12,0,0,0">
-                                    <Run Text="Rekord: "/>
-                                    <Run Text="{Binding BestStreak, Mode=OneWay}"/>
-                                    <Run Text=" dni"/>
+                                                <Border Grid.Column="0" Width="24" Height="24" CornerRadius="12"
+                                                        Background="{Binding IsCompletedToday, Converter={StaticResource CompletedTodayToColor}}"
+                                                        BorderBrush="{Binding CurrentStreak, Converter={StaticResource StreakToColor}}"
+                                                        BorderThickness="2" Margin="0,0,12,0" Cursor="Hand" VerticalAlignment="Center">
+                                                    <Border.InputBindings>
+                                                        <MouseBinding MouseAction="LeftClick"
+                                                                      Command="{Binding DataContext.ToggleHabitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                      CommandParameter="{Binding}"/>
+                                                    </Border.InputBindings>
+                                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" Foreground="White">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Text" Value=""/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsCompletedToday}" Value="True">
+                                                                        <Setter Property="Text" Value="✓"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
                                                     </TextBlock>
+                                                </Border>
+
+                                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Title}" FontSize="14" FontWeight="SemiBold"
+                                                               TextDecorations="{Binding IsCompletedToday, Converter={StaticResource CompletedToStrike}}">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsCompletedToday}" Value="True">
+                                                                        <Setter Property="Foreground" Value="{StaticResource BgDarkBrush}"/>
+                                                                        <Setter Property="Opacity" Value="0.8"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+
+                                                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                                                        <TextBlock Text="{Binding StreakLabel}" FontSize="11" FontWeight="SemiBold"
+                                                                   Foreground="{Binding CurrentStreak, Converter={StaticResource StreakToColor}}"/>
+                                                        <TextBlock FontSize="11" Margin="8,0,0,0">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding IsCompletedToday}" Value="True">
+                                                                            <Setter Property="Foreground" Value="#B8E5DF"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                            <Run Text="Rekord: "/>
+                                                            <Run Text="{Binding BestStreak, Mode=OneWay}"/>
+                                                            <Run Text=" dni"/>
+                                                        </TextBlock>
+                                                    </StackPanel>
                                                 </StackPanel>
-                                            </StackPanel>
 
-                                            <StackPanel Grid.Column="2"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center"
-                                    Margin="10,0,0,0">
-
-                                                <Button Content="🗑"
-                                    Style="{StaticResource DangerButton}"
-                                    Padding="7,4"
-                                    FontSize="12"
-                                    MinWidth="30"
-                                    Command="{Binding DataContext.DeleteHabitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                    CommandParameter="{Binding}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                                                <Button Grid.Column="2" Content="🗑" Style="{StaticResource DangerButton}"
+                                                        Padding="8,4" FontSize="12" VerticalAlignment="Center"
+                                                        Command="{Binding DataContext.DeleteHabitCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                        CommandParameter="{Binding}"/>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
                     </Border>
                 </StackPanel>
 
-                <Border Grid.Column="2" Style="{StaticResource Card}" VerticalAlignment="Top">
-                    <StackPanel>
-                        <TextBlock Text="😊 Twój nastrój dziś" Style="{StaticResource SectionHeader}" FontSize="14"/>
-                        <TextBlock Text="{Binding TodayRecord.MoodLabel}" FontSize="28"
-                                   HorizontalAlignment="Center" Margin="0,8"/>
+                <!-- ========================================== -->
+                <!-- PRAWA KOLUMNA: NASTRÓJ                     -->
+                <!-- ========================================== -->
+                <StackPanel Grid.Column="2">
 
-                        <Slider Minimum="0" Maximum="5" TickFrequency="1"
-                                IsSnapToTickEnabled="True" TickPlacement="BottomRight"
-                                Value="{Binding TodayRecord.MoodScore}"
-                                Style="{StaticResource MoodSlider}"
-                                Margin="0,4,0,12"/>
+                    <Border Style="{StaticResource Card}" VerticalAlignment="Top" Padding="16">
+                        <StackPanel>
 
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="😞" FontSize="12" Margin="0,0,8,0" Opacity="0.5"/>
-                            <TextBlock Text="1                2                3                4                5" FontSize="10"
-                                       Foreground="{StaticResource TextPrimaryBrush}"/>
-                            <TextBlock Text="😄" FontSize="12" Margin="8,0,0,0" Opacity="0.5"/>
+                            <!-- NAGŁÓWEK W PANELU -->
+                            <Grid Margin="2,0,2,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0"
+                                        Background="{StaticResource AccentGreenBrush}"
+                                        BorderBrush="{StaticResource AccentGreenShadowBrush}"
+                                        BorderThickness="0,0,0,2"
+                                        CornerRadius="8"
+                                        Padding="6,3"
+                                        Margin="0,0,8,0">
+                                    <TextBlock Text="😊"
+                                               FontSize="13"
+                                               VerticalAlignment="Center"/>
+                                </Border>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="Twój nastrój dziś"
+                                               FontSize="15"
+                                               FontWeight="Bold"
+                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    <TextBlock Text="Jak się dzisiaj czujesz?"
+                                               FontSize="10"
+                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- ZIELONY MINI-PANEL (Odczyt Nastroju) -->
+                            <Border Background="{StaticResource AccentGreenBrush}" 
+                                    BorderBrush="{StaticResource AccentGreenShadowBrush}" 
+                                    BorderThickness="0,0,0,3" 
+                                    CornerRadius="10" Padding="16,20" Margin="0,0,0,16">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding TodayRecord.MoodLabel}" FontSize="28" FontWeight="Bold"
+                                               Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,12"/>
+
+                                    <Slider Minimum="0" Maximum="5" TickFrequency="1"
+                                            IsSnapToTickEnabled="True" TickPlacement="BottomRight"
+                                            Value="{Binding TodayRecord.MoodScore}"
+                                            Style="{StaticResource MoodSlider}" Foreground="White"
+                                            Margin="0,4,0,12"/>
+
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="😞" FontSize="12" Margin="0,0,8,0" Foreground="{StaticResource BgDarkBrush}"/>
+                                        <TextBlock Text="1                2                3                4                5" FontSize="10" FontWeight="Bold"
+                                                   Foreground="{StaticResource BgDarkBrush}"/>
+                                        <TextBlock Text="😄" FontSize="12" Margin="8,0,0,0" Foreground="{StaticResource BgDarkBrush}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <Button Content="Zapisz nastrój" Style="{StaticResource GreenButton}"
+                                    Command="{Binding SaveMoodCommand}"
+                                    HorizontalAlignment="Stretch"/>
                         </StackPanel>
-
-                        <Button Content="Zapisz nastrój" Style="{StaticResource GreenButton}"
-                                Command="{Binding SaveMoodCommand}"
-                                Margin="0,16,0,0" HorizontalAlignment="Stretch"/>
-                    </StackPanel>
-                </Border>
+                    </Border>
+                </StackPanel>
             </Grid>
         </StackPanel>
     </ScrollViewer>
