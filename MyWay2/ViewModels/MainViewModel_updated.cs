@@ -8,6 +8,7 @@ namespace MyWay.ViewModels
     {
         public TasksViewModel Tasks { get; }
         public DashboardViewModel Dashboard { get; }
+        public ProfileViewModel Profile { get; }   // ← NOWE
 
         private int _selectedTabIndex;
         public int SelectedTabIndex
@@ -22,10 +23,11 @@ namespace MyWay.ViewModels
             var quoteService = new QuoteService();
             var pdfService = new PdfExportService();
 
-            Tasks = new TasksViewModel(db);
+            Tasks     = new TasksViewModel(db);
             Dashboard = new DashboardViewModel(db, quoteService, pdfService);
+            Profile   = new ProfileViewModel(db);   // ← NOWE
 
-            // Wire up: when task is completed, add points to today's record
+            // Wire up: gdy zadanie zostaje ukończone, dodaj punkty do rekordu dnia
             Tasks.PointsEarned += async pts => await Dashboard.AddTaskPointsAsync(pts);
         }
 

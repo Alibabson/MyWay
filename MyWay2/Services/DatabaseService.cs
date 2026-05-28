@@ -9,6 +9,57 @@ namespace MyWay.Services
 {
     public class DatabaseService
     {
+        // ── USER PROFILE ───────────────────────────────────────────────────
+
+    public async Task<UserProfile> GetOrCreateProfileAsync()
+    {
+        await using var conn = new SqliteConnection(_connectionString);
+        await conn.OpenAsync();
+        await using var cmd = conn.CreateCommand();
+        cmd.CommandText = "SELECT * FROM UserProfile LIMIT 1";
+        await using var reader = await cmd.ExecuteReaderAsync();
+        if (await reader.ReadAsync())
+        {
+            return new UserProfile
+            {
+                Id         = reader.GetInt32(0),
+                DisplayName    = reader.GetString(1),
+                AvatarEmoji    = reader.GetString(2),
+                DailyPointsGoal = reader.GetInt32(3),
+                JoinedDate = DateTime.Parse(reader.GetString(4))
+            };
+        }
+
+        // Brak profilu – utwórz domyślny
+        var profile = new UserProfile { JoinedDate = DateTime.Today };
+        await using var ins = conn.CreateCommand();
+        ins.CommandText = @"
+            INSERT INTO UserProfile (DisplayName, AvatarEmoji, DailyPointsGoal, JoinedDate)
+            VALUES ($name, $emoji, $goal, $joined);
+            SELECT last_insert_rowid();";
+        ins.Parameters.AddWithValue("$name",   profile.DisplayName);
+        ins.Parameters.AddWithValue("$emoji",  profile.AvatarEmoji);
+        ins.Parameters.AddWithValue("$goal",   profile.DailyPointsGoal);
+        ins.Parameters.AddWithValue("$joined", profile.JoinedDate.ToString("yyyy-MM-dd"));
+        profile.Id = Convert.ToInt32(await ins.ExecuteScalarAsync());
+        return profile;
+    }
+
+    public async Task UpdateProfileAsync(UserProfile profile)
+    {
+        await using var conn = new SqliteConnection(_connectionString);
+        await conn.OpenAsync();
+        await using var cmd = conn.CreateCommand();
+        cmd.CommandText = @"
+            UPDATE UserProfile SET
+                DisplayName=$name, AvatarEmoji=$emoji, DailyPointsGoal=$goal
+            WHERE Id=$id";
+        cmd.Parameters.AddWithValue("$name",  profile.DisplayName);
+        cmd.Parameters.AddWithValue("$emoji", profile.AvatarEmoji);
+        cmd.Parameters.AddWithValue("$goal",  profile.DailyPointsGoal);
+        cmd.Parameters.AddWithValue("$id",    profile.Id);
+        await cmd.ExecuteNonQueryAsync();
+    }
         private readonly string _connectionString;
 
         public DatabaseService()
@@ -54,6 +105,14 @@ namespace MyWay.Services
                     ExtraPoints INTEGER NOT NULL DEFAULT 0,
                     QuoteOfTheDay TEXT,
                     TaskPoints INTEGER NOT NULL DEFAULT 0
+                );");
+                 conn.ExecuteNonQuery(@"
+                CREATE TABLE IF NOT EXISTS UserProfile (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    DisplayName TEXT NOT NULL DEFAULT 'Użytkownik',
+                    AvatarEmoji TEXT NOT NULL DEFAULT '🧑',
+                    DailyPointsGoal INTEGER NOT NULL DEFAULT 10,
+                    JoinedDate TEXT NOT NULL
                 );");
         }
 

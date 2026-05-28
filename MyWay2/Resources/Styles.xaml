@@ -17,6 +17,9 @@
     <Color x:Key="AccentBlueShadow">#3F82A2</Color>
     <Color x:Key="AccentBlueLight">#89BBD1</Color>
 
+    <Color x:Key="AccentTeal">#3FC0A2</Color>
+    <Color x:Key="AccentTealShadow">#318A78</Color>
+
     <Color x:Key="AccentPink">#C05DBB</Color>
     <Color x:Key="AccentPinkShadow">#A23F9D</Color>
 
@@ -40,6 +43,9 @@
     <SolidColorBrush x:Key="AccentBlueBrush" Color="{StaticResource AccentBlue}"/>
     <SolidColorBrush x:Key="AccentBlueShadowBrush" Color="{StaticResource AccentBlueShadow}"/>
     <SolidColorBrush x:Key="AccentBlueLightBrush" Color="{StaticResource AccentBlueLight}"/>
+
+    <SolidColorBrush x:Key="AccentTealBrush" Color="{StaticResource AccentTeal}"/>
+    <SolidColorBrush x:Key="AccentTealShadowBrush" Color="{StaticResource AccentTealShadow}"/>
 
     <SolidColorBrush x:Key="AccentPinkBrush" Color="{StaticResource AccentPink}"/>
     <SolidColorBrush x:Key="AccentPinkShadowBrush" Color="{StaticResource AccentPinkShadow}"/>
@@ -115,6 +121,11 @@
         </Setter>
     </Style>
 
+    <Style x:Key="AccentButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+        <Setter Property="Background" Value="{StaticResource AccentTealBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AccentTealShadowBrush}"/>
+    </Style>
+
     <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
         <Setter Property="Background" Value="{StaticResource DangerRedBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource DangerRedShadowBrush}"/>
@@ -173,6 +184,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="ModernTextBox" TargetType="TextBox" BasedOn="{StaticResource DarkTextBox}" />
 
     <!-- Filter panel / top bar -->
     <Style x:Key="FilterPanelCard" TargetType="Border" BasedOn="{StaticResource Card}">

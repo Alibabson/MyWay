@@ -56,7 +56,6 @@
                     <StackPanel Grid.Row="1" Margin="12,8">
                         <Button Content="🏠  Dzisiaj" Style="{StaticResource BaseButton}"
                                 Margin="0,2" HorizontalContentAlignment="Left"
-                                Command="{Binding NavigateCommand}"
                                 Tag="0"
                                 Click="NavBtn_Click" x:Name="BtnDashboard"/>
                         <Button Content="✅  Zadania" Style="{StaticResource BaseButton}"
@@ -67,6 +66,12 @@
                                 Margin="0,2" HorizontalContentAlignment="Left"
                                 Tag="3"
                                 Click="NavBtn_Click" x:Name="BtnStats"/>
+
+                        <!-- ↓ NOWY PRZYCISK PROFILU -->
+                        <Button Content="👤  Profil" Style="{StaticResource BaseButton}"
+                                Margin="0,2" HorizontalContentAlignment="Left"
+                                Tag="4"
+                                Click="NavBtn_Click" x:Name="BtnProfile"/>
                     </StackPanel>
 
                     <Border Grid.Row="2" Margin="12,0,12,16" Style="{StaticResource Card}"
@@ -91,9 +96,9 @@
                             <StackPanel Orientation="Horizontal" Margin="0,2">
                                 <TextBlock Text="🔥 " FontSize="12"/>
                                 <TextBlock FontSize="12" Foreground="{StaticResource TextSecondaryBrush}">
-                                    <Run Text="{Binding Habits.CompletedToday, Mode=OneWay}"/>
+                                    <Run Text="{Binding Dashboard.CompletedToday, Mode=OneWay}"/>
                                     <Run Text="/"/>
-                                    <Run Text="{Binding Habits.Habits.Count, Mode=OneWay}"/>
+                                    <Run Text="{Binding Dashboard.Habits.Count, Mode=OneWay}"/>
                                     <Run Text=" nawyków"/>
                                 </TextBlock>
                             </StackPanel>
@@ -124,6 +129,10 @@
                                  Visibility="Collapsed"/>
                 <views:StatsView x:Name="PageStats" DataContext="{Binding Dashboard}"
                                  Visibility="Collapsed"/>
+
+                <!-- ↓ NOWY WIDOK PROFILU -->
+                <views:ProfileView x:Name="PageProfile" DataContext="{Binding Profile}"
+                                   Visibility="Collapsed"/>
             </Grid>
         </Grid>
     </Border>
