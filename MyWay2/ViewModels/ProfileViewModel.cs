@@ -162,6 +162,8 @@ namespace MyWay.ViewModels
             IsEditing = false;
         }
 
+        public async Task RefreshStatsAsync() => await LoadStatsAsync();
+
         private async Task LoadStatsAsync()
         {
             var records = await _db.GetRecordsForPeriodAsync(DateTime.MinValue, DateTime.Today);

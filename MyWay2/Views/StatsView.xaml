@@ -164,7 +164,7 @@
                         BorderBrush="{StaticResource AccentPurpleShadowBrush}"
                         Padding="16,12">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="🏆 Łączne punkty"
+                        <TextBlock Text="Łączne punkty"
                                    FontSize="12"
                                    FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}"
@@ -191,7 +191,7 @@
                         BorderBrush="{StaticResource AccentGreenShadowBrush}"
                         Padding="16,12">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="😊 Śr. nastrój"
+                        <TextBlock Text="Śr. nastrój (1-5)"
                                    FontSize="12"
                                    FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}"
@@ -218,7 +218,7 @@
                         BorderBrush="{StaticResource AccentBlueShadowBrush}"
                         Padding="16,12">
                     <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="📅 Dni z danymi"
+                        <TextBlock Text="Dni z danymi"
                                    FontSize="12"
                                    FontWeight="SemiBold"
                                    Foreground="{StaticResource TextPrimaryBrush}"
@@ -339,9 +339,9 @@
                                                     Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}"
                                                     Width="110"/>
 
-                                <DataGridTextColumn Header="Nastrój"
-                                                    Binding="{Binding MoodEmoji}"
-                                                    Width="90"/>
+                                <DataGridTextColumn Header="Nastrój (1-5)"
+                                                    Binding="{Binding MoodScore}"
+                                                    Width="100"/>
 
                                 <DataGridTextColumn Header="Pkt. zadań"
                                                     Binding="{Binding TaskPoints}"

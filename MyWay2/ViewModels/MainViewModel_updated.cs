@@ -28,7 +28,11 @@ namespace MyWay.ViewModels
             Profile   = new ProfileViewModel(db);   // ← NOWE
 
             // Wire up: gdy zadanie zostaje ukończone, dodaj punkty do rekordu dnia
-            Tasks.PointsEarned += async pts => await Dashboard.AddTaskPointsAsync(pts);
+            Tasks.PointsEarned += async pts =>
+            {
+                await Dashboard.AddTaskPointsAsync(pts);
+                await Profile.RefreshStatsAsync();
+            };
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -164,6 +164,7 @@ namespace MyWay.ViewModels
             TodayRecord.TaskPoints += points;
             await _db.UpsertDailyRecordAsync(TodayRecord);
             OnPropertyChanged(nameof(TodayRecord));
+            await LoadStatsAsync();
         }
 
         private async Task LoadStatsAsync()

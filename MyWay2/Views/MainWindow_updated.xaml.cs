@@ -70,9 +70,16 @@ namespace MyWay.Views
         private void SetActiveNav(Button btn)
         {
             if (_activeNav != null)
-                _activeNav.Background = System.Windows.Media.Brushes.Transparent;
+            {
+                _activeNav.Background   = System.Windows.Media.Brushes.Transparent;
+                _activeNav.BorderBrush  = System.Windows.Media.Brushes.Transparent;
+                _activeNav.Foreground   = (System.Windows.Media.Brush)FindResource("TextSecondaryBrush");
+            }
             _activeNav = btn;
-            btn.Background = (System.Windows.Media.Brush)FindResource("AccentPurpleBrush");
+            btn.Background  = new System.Windows.Media.SolidColorBrush(
+                System.Windows.Media.Color.FromArgb(40, 123, 110, 245));
+            btn.BorderBrush = (System.Windows.Media.Brush)FindResource("AccentPurpleBrush");
+            btn.Foreground  = (System.Windows.Media.Brush)FindResource("TextPrimaryBrush");
         }
     }
 }

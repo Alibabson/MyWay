@@ -117,67 +117,112 @@
             </Border>
 
             <!-- Statystyki całościowe -->
-            <TextBlock Text="📈  Twoje statystyki" FontSize="15" FontWeight="SemiBold"
+            <TextBlock Text="Twoje statystyki" FontSize="15" FontWeight="SemiBold"
                        Foreground="{StaticResource TextPrimaryBrush}" Margin="0,8,0,12"/>
 
-            <Grid Margin="0,0,0,16">
+            <!-- Wiersz górny: 2 karty -->
+            <Grid Margin="0,0,0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="12"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Łączne punkty -->
-                <Border Grid.Column="0" Style="{StaticResource Card}" Padding="16" Margin="0,0,8,0">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="⭐" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding TotalPoints}" FontSize="22" FontWeight="Bold"
-                                   Foreground="{StaticResource AccentPurpleBrush}"
-                                   HorizontalAlignment="Center" Margin="0,4,0,2"/>
-                        <TextBlock Text="Łączne punkty" FontSize="11"
-                                   Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
+                <Border Grid.Column="0" Style="{StaticResource Card}" Padding="20,18">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding TotalPoints}" FontSize="36" FontWeight="Black"
+                                       Foreground="{StaticResource AccentPurpleBrush}"/>
+                            <TextBlock Text="Łączne punkty" FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="44" Height="44" CornerRadius="22"
+                                Background="#2A2360" VerticalAlignment="Center">
+                            <TextBlock Text="PKT" FontSize="10" FontWeight="Bold"
+                                       Foreground="{StaticResource AccentPurpleBrush}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
                 </Border>
 
                 <!-- Ukończone zadania -->
-                <Border Grid.Column="1" Style="{StaticResource Card}" Padding="16" Margin="0,0,8,0">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="✅" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding TotalTasksDone}" FontSize="22" FontWeight="Bold"
-                                   Foreground="{StaticResource AccentGreenBrush}"
-                                   HorizontalAlignment="Center" Margin="0,4,0,2"/>
-                        <TextBlock Text="Zadań ukończonych" FontSize="11"
-                                   Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
+                <Border Grid.Column="2" Style="{StaticResource Card}" Padding="20,18">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding TotalTasksDone}" FontSize="36" FontWeight="Black"
+                                       Foreground="{StaticResource AccentGreenBrush}"/>
+                            <TextBlock Text="Zadań ukończonych" FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="44" Height="44" CornerRadius="22"
+                                Background="#1A3830" VerticalAlignment="Center">
+                            <TextBlock Text="ZAD" FontSize="10" FontWeight="Bold"
+                                       Foreground="{StaticResource AccentGreenBrush}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
                 </Border>
+            </Grid>
+
+            <!-- Wiersz dolny: 2 karty -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
                 <!-- Średni nastrój -->
-                <Border Grid.Column="2" Style="{StaticResource Card}" Padding="16" Margin="0,0,8,0">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="😊" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding AvgMoodLabel}" FontSize="22" FontWeight="Bold"
-                                   Foreground="{StaticResource AccentTealBrush}"
-                                   HorizontalAlignment="Center" Margin="0,4,0,2"/>
-                        <TextBlock Text="Śr. nastrój" FontSize="11"
-                                   Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
+                <Border Grid.Column="0" Style="{StaticResource Card}" Padding="20,18">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding AvgMoodLabel}" FontSize="36" FontWeight="Black"
+                                       Foreground="{StaticResource AccentTealBrush}"/>
+                            <TextBlock Text="Śr. nastrój (skala 1–5)" FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="44" Height="44" CornerRadius="22"
+                                Background="#0A2E2C" VerticalAlignment="Center">
+                            <TextBlock Text="1-5" FontSize="10" FontWeight="Bold"
+                                       Foreground="{StaticResource AccentTealBrush}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
                 </Border>
 
                 <!-- Aktywne dni -->
-                <Border Grid.Column="3" Style="{StaticResource Card}" Padding="16">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="📅" FontSize="24" HorizontalAlignment="Center"/>
-                        <TextBlock Text="{Binding ActiveDays}" FontSize="22" FontWeight="Bold"
-                                   Foreground="#FF9800"
-                                   HorizontalAlignment="Center" Margin="0,4,0,2"/>
-                        <TextBlock Text="Aktywnych dni" FontSize="11"
-                                   Foreground="{StaticResource TextSecondaryBrush}"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
+                <Border Grid.Column="2" Style="{StaticResource Card}" Padding="20,18">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding ActiveDays}" FontSize="36" FontWeight="Black"
+                                       Foreground="#FF9800"/>
+                            <TextBlock Text="Aktywnych dni" FontSize="12"
+                                       Foreground="{StaticResource TextSecondaryBrush}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <Border Grid.Column="1" Width="44" Height="44" CornerRadius="22"
+                                Background="#2E1E00" VerticalAlignment="Center">
+                            <TextBlock Text="DNI" FontSize="10" FontWeight="Bold"
+                                       Foreground="#FF9800"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Grid>
                 </Border>
             </Grid>
 

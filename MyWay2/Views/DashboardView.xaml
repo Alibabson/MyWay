@@ -4,20 +4,36 @@
     <ScrollViewer>
         <StackPanel Margin="24,20,24,24">
 
-            <TextBlock Style="{StaticResource SectionHeader}" FontSize="22">
-                <Run Text="🌅  Dzień dobry!  "/>
-                <Run Text="{Binding TodayRecord.Date, StringFormat={}{0:dddd, dd MMMM yyyy}, Mode=OneWay}"
-                     Foreground="{StaticResource TextSecondaryBrush}" FontSize="14" FontWeight="Normal"/>
-            </TextBlock>
+            <StackPanel Margin="0,0,0,16">
+                <TextBlock FontSize="24" FontWeight="Black" Foreground="{StaticResource TextPrimaryBrush}">
+                    <Run Text="Dzień dobry"/>
+                </TextBlock>
+                <TextBlock Text="{Binding TodayRecord.Date, StringFormat={}{0:dddd\, dd MMMM yyyy}, Mode=OneWay}"
+                           FontSize="12" Foreground="{StaticResource TextSecondaryBrush}"
+                           Margin="0,3,0,0"/>
+            </StackPanel>
 
-            <!-- GŁÓWNY PANEL ZAKŁADKI (Zielony Cytat) -->
-            <Border Style="{StaticResource QuoteCard}" Margin="0,0,0,24">
-                <StackPanel>
-                    <TextBlock Text="💬 Cytat dnia" Style="{StaticResource Label}" Margin="0,0,0,6"/>
-                    <TextBlock Text="{Binding QuoteText}" FontSize="14" FontStyle="Italic"
-                               Foreground="{StaticResource BgDarkBrush}"
-                               TextWrapping="Wrap" LineHeight="22"/>
-                </StackPanel>
+            <!-- Cytat dnia – hero card -->
+            <Border Style="{StaticResource QuoteCard}" Margin="0,0,0,24" Padding="20,18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="„" FontSize="64" FontWeight="Black"
+                               Foreground="{StaticResource BgDarkBrush}" Opacity="0.25"
+                               VerticalAlignment="Top" Margin="0,-16,14,0" LineHeight="1"/>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock Text="CYTAT DNIA" FontSize="9" FontWeight="Bold"
+                                   Foreground="{StaticResource BgDarkBrush}" Opacity="0.55"
+                                   Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding QuoteText}" FontSize="14" FontStyle="Italic"
+                                   Foreground="{StaticResource BgDarkBrush}"
+                                   TextWrapping="Wrap" LineHeight="22" Opacity="0.9"/>
+                    </StackPanel>
+                </Grid>
             </Border>
 
             <Grid Margin="0,0,0,16">
