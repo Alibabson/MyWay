@@ -50,23 +50,7 @@ namespace MyWay.Converters
             => throw new NotImplementedException();
     }
 
-    public class CompletedToOpacityConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => value is bool b && b ? 0.45 : 1.0;
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
-    }
 
-    public class OverdueToColorConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => value is bool b && b
-                ? new SolidColorBrush(Color.FromRgb(229, 57, 53))
-                : new SolidColorBrush(Color.FromRgb(60, 60, 80));
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
-    }
 
     public class StreakToColorConverter : IValueConverter
     {
@@ -92,27 +76,7 @@ namespace MyWay.Converters
             => throw new NotImplementedException();
     }
 
-    public class MoodToColorConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is int mood)
-            {
-                return mood switch
-                {
-                    1 => new SolidColorBrush(Color.FromRgb(229, 57, 53)),
-                    2 => new SolidColorBrush(Color.FromRgb(255, 167, 38)),
-                    3 => new SolidColorBrush(Color.FromRgb(255, 213, 79)),
-                    4 => new SolidColorBrush(Color.FromRgb(102, 187, 106)),
-                    5 => new SolidColorBrush(Color.FromRgb(42, 182, 115)),
-                    _ => Brushes.Gray
-                };
-            }
-            return Brushes.Gray;
-        }
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotImplementedException();
-    }
+
 
     public class IsCompletedTodayToColorConverter : IValueConverter
     {

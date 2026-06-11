@@ -233,9 +233,7 @@
                     </Border>
                 </StackPanel>
 
-                <!-- ========================================== -->
                 <!-- PRAWA KOLUMNA: NASTRÓJ                     -->
-                <!-- ========================================== -->
                 <StackPanel Grid.Column="2">
 
                     <Border Style="{StaticResource Card}" VerticalAlignment="Top" Padding="16">
@@ -288,10 +286,8 @@
                                             Margin="0,4,0,12"/>
 
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                        <TextBlock Text="😞" FontSize="12" Margin="0,0,8,0" Foreground="{StaticResource BgDarkBrush}"/>
-                                        <TextBlock Text="1                2                3                4                5" FontSize="10" FontWeight="Bold"
+                                        <TextBlock Text="1                      2                      3                      4                      5" FontSize="10" FontWeight="Bold"
                                                    Foreground="{StaticResource BgDarkBrush}"/>
-                                        <TextBlock Text="😄" FontSize="12" Margin="8,0,0,0" Foreground="{StaticResource BgDarkBrush}"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
