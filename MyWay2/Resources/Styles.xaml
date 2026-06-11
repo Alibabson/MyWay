@@ -138,7 +138,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource AccentGreenShadowBrush}"/>
     </Style>
 
-    <Style x:Key="OrangeButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+    <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
         <Setter Property="Background" Value="{StaticResource AccentBlueBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource AccentBlueShadowBrush}"/>
     </Style>

@@ -10,7 +10,9 @@ namespace MyWay.Models
         [ObservableProperty] private int _difficulty = 1; // 1=Łatwe, 2=Średnie, 3=Trudne
         [ObservableProperty] private DateTime _dueDate = DateTime.Today;
         [ObservableProperty] private bool _isCompleted;
-        [ObservableProperty] private int _timeSpentSeconds;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(TimeSpentLabel))]
+        private int _timeSpentSeconds;
         [ObservableProperty] private bool _isOverdue;
 
         public int Points => Difficulty;
