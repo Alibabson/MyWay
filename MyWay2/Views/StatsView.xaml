@@ -187,7 +187,7 @@
 
                 <Border Grid.Column="2"
                         Style="{StaticResource TaskItemCard}"
-                        Background="#2F6F73"
+                        Background="{StaticResource AccentGreenBrush}"
                         BorderBrush="{StaticResource AccentGreenShadowBrush}"
                         Padding="16,12">
                     <StackPanel HorizontalAlignment="Center">

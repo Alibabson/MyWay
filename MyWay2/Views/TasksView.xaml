@@ -222,8 +222,8 @@
                                             </DataTrigger>
 
                                             <DataTrigger Binding="{Binding IsCompleted}" Value="False">
-                                                <Setter Property="Background" Value="{StaticResource AccentPinkBrush}"/>
-                                                <Setter Property="BorderBrush" Value="{StaticResource AccentPinkShadowBrush}"/>
+                                                <Setter Property="Background" Value="{StaticResource AccentPurpleBrush}"/>
+                                                <Setter Property="BorderBrush" Value="{StaticResource AccentPurpleShadowBrush}"/>
                                             </DataTrigger>
 
                                             <DataTrigger Binding="{Binding IsOverdue}" Value="True">
@@ -298,6 +298,25 @@
                                                     </Style>
                                                 </TextBlock.Style>
                                             </TextBlock>
+
+                                            <TextBlock Margin="12,3,0,0">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock" BasedOn="{StaticResource TaskDateText}">
+                                                        <Setter Property="Text" Value="{Binding TimeSpentLabel, StringFormat='⏱ {0}'}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding TimeSpentSeconds}" Value="0">
+                                                                 <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                                <Setter Property="Foreground" Value="#B8E5DF"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding IsOverdue}" Value="True">
+                                                                <Setter Property="Foreground" Value="#FF7043"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
                                         </StackPanel>
                                     </StackPanel>
 
@@ -307,11 +326,20 @@
                             Margin="10,0,0,0">
 
                                         <Button Content="🎯"
-                            Style="{StaticResource GhostButton}"
+                            Style="{StaticResource BlueButton}"
                             Padding="7,4"
                             FontSize="12"
                             MinWidth="30"
                             Command="{Binding DataContext.StartFocusCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                            CommandParameter="{Binding}"/>
+
+                                        <Button Content="✏️"
+                            Style="{StaticResource GreenButton}"
+                            Padding="7,4"
+                            FontSize="12"
+                            MinWidth="30"
+                            Margin="5,0,0,0"
+                            Command="{Binding DataContext.StartEditCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
                             CommandParameter="{Binding}"/>
 
                                         <Button Content="🗑"
@@ -475,7 +503,7 @@
 
                             <Button Grid.Column="0"
                     Content="➕ Dodaj"
-                    Style="{StaticResource OrangeButton}"
+                    Style="{StaticResource BaseButton}"
                     Command="{Binding AddTaskCommand}"
                     Height="28"
                     FontSize="10"
@@ -603,6 +631,96 @@
                         <Button Grid.Column="4" Content="✕ Wyjdź"
                                 Style="{StaticResource DangerButton}"
                                 Command="{Binding StopFocusCommand}"
+                                Height="36" FontSize="11" Padding="12,0"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- MODAL OVERLAY: EDYCJA ZADANIA -->
+        <Grid Grid.Row="0" Grid.RowSpan="3"
+              Panel.ZIndex="1000"
+              Visibility="{Binding IsEditing, Converter={StaticResource BoolToVis}}">
+            
+            <!-- Dimmed Background -->
+            <Border Background="#D90B0914"/>
+            
+            <!-- Centered Modal Content Card -->
+            <Border Width="400" Height="340"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Background="{StaticResource BgCardBrush}"
+                    BorderBrush="{StaticResource AccentPurpleShadowBrush}"
+                    BorderThickness="1,1,1,4"
+                    CornerRadius="16"
+                    Padding="24">
+                <Border.Effect>
+                    <DropShadowEffect Color="{StaticResource CardShadow}" BlurRadius="20" ShadowDepth="4" Opacity="0.5"/>
+                </Border.Effect>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Header -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,16">
+                        <TextBlock Text="✏️" FontSize="18" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="EDYCJA ZADANIA" FontSize="14" FontWeight="Black"
+                                   Foreground="{StaticResource AccentPurpleBrush}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
+                    <!-- Middle Content: Form -->
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                        <!-- Task Title -->
+                        <TextBlock Text="Nazwa zadania" Style="{StaticResource NewTaskLabel}" Margin="0,0,0,4"/>
+                        <TextBox Style="{StaticResource DarkTextBox}"
+                                 Height="32"
+                                 FontSize="12"
+                                 Padding="8,4"
+                                 Text="{Binding EditingTask.Title, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,12"/>
+                        
+                        <!-- Difficulty -->
+                        <TextBlock Text="Trudność" Style="{StaticResource NewTaskLabel}" Margin="0,0,0,4"/>
+                        <ListBox Style="{StaticResource SegmentedListBox}"
+                                 ItemContainerStyle="{StaticResource SegmentedListBoxItem}"
+                                 SelectedValue="{Binding EditingTask.Difficulty}"
+                                 SelectedValuePath="Tag"
+                                 Margin="0,0,0,12">
+                            <ListBoxItem Content="⭐ Łatwe" Tag="1"/>
+                            <ListBoxItem Content="⭐⭐ Średnie" Tag="2"/>
+                            <ListBoxItem Content="⭐⭐⭐ Trudne" Tag="3"/>
+                        </ListBox>
+
+                        <!-- Due Date -->
+                        <TextBlock Text="Termin" Style="{StaticResource NewTaskLabel}" Margin="0,0,0,4"/>
+                        <DatePicker SelectedDate="{Binding EditingTask.DueDate}"
+                                    Height="32"
+                                    Margin="0,0,0,12"
+                                    Padding="8,0"
+                                    VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                    
+                    <!-- Footer Buttons -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="12"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Cancel Button -->
+                        <Button Grid.Column="0" Content="✕ Anuluj"
+                                Style="{StaticResource DangerButton}"
+                                Command="{Binding CancelEditCommand}"
+                                Height="36" FontSize="11" Padding="12,0"/>
+                        
+                        <!-- Save Button -->
+                        <Button Grid.Column="2" Content="💾 Zapisz"
+                                Style="{StaticResource GreenButton}"
+                                Command="{Binding SaveEditCommand}"
                                 Height="36" FontSize="11" Padding="12,0"/>
                     </Grid>
                 </Grid>

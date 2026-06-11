@@ -18,7 +18,6 @@ namespace MyWay.ViewModels
         private readonly DatabaseService _db;
         public event Action<int>? PointsEarned;
 
-        // ── Collections ────────────────────────────────────────────────────
         public ObservableCollection<TaskItem> Tasks { get; } = new();
 
         private ICollectionView _tasksView = null!;
@@ -207,13 +206,7 @@ namespace MyWay.ViewModels
             if (string.IsNullOrWhiteSpace(NewTitle)) return;
             if (NewDueDate < DateTime.Today) return;
 
-            if (Tasks.Any(t => t.Title.Equals(NewTitle.Trim(), StringComparison.OrdinalIgnoreCase)
-                              && !t.IsCompleted))
-            {
-                MessageBox.Show("Zadanie o tej nazwie już istnieje na liście.",
-                    "Duplikat", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+
 
             var task = new TaskItem
             {
@@ -243,13 +236,7 @@ namespace MyWay.ViewModels
             if (string.IsNullOrWhiteSpace(NewTitle)) return;
             if (NewDueDate < DateTime.Today) return;
 
-            if (Tasks.Any(t => t.Title.Equals(NewTitle.Trim(), StringComparison.OrdinalIgnoreCase)
-                              && !t.IsCompleted))
-            {
-                MessageBox.Show("Zadanie o tej nazwie już istnieje na liście.",
-                    "Duplikat", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+
 
             var task = new TaskItem
             {
@@ -403,10 +390,8 @@ namespace MyWay.ViewModels
             };
 
             // LOGIKA KALENDARZA
-            // Pokazujemy zadanie, jeśli jego data to dokładnie wybrany dzień w kalendarzu
-            // LUB jeśli zadanie jest nieukończone (zaległe) i jego oryginalna data jest w przeszłości względem wybranego dnia
             bool matchDate = t.DueDate.Date == SelectedDate.Date ||
-                             (!t.IsCompleted && t.DueDate.Date < SelectedDate.Date);
+                             (t.IsOverdue);
 
             return matchText && matchStatus && matchDate;
         }

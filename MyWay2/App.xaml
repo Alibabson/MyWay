@@ -14,11 +14,10 @@
             <converters:BoolToInverseVisibilityConverter x:Key="BoolToInvVis"/>
             <converters:DifficultyToColorConverter x:Key="DiffToColor"/>
             <converters:CompletedToStrikethroughConverter x:Key="CompletedToStrike"/>
-            <converters:CompletedToOpacityConverter x:Key="CompletedToOpacity"/>
-            <converters:OverdueToColorConverter x:Key="OverdueToColor"/>
+
             <converters:StreakToColorConverter x:Key="StreakToColor"/>
             <converters:NullToVisibilityConverter x:Key="NullToVis"/>
-            <converters:MoodToColorConverter x:Key="MoodToColor"/>
+
             <converters:IsCompletedTodayToColorConverter x:Key="CompletedTodayToColor"/>
         </ResourceDictionary>
     </Application.Resources>
